@@ -1,6 +1,6 @@
 # Template file for 'pyright'
 pkgname=pyright
-version=1.1.307
+version=1.1.309
 revision=1
 build_wrksrc="packages/pyright"
 hostmakedepends="nodejs python3"
@@ -11,7 +11,7 @@ license="MIT"
 homepage="https://microsoft.github.io/pyright"
 changelog="https://github.com/microsoft/pyright/releases"
 distfiles="https://github.com/microsoft/pyright/archive/refs/tags/${version}.tar.gz"
-checksum=434343c13bd470078c0184d7ac6383b5c0e43fabf79efaaef8e501d2a39933e3
+checksum=6af39e64928459992a4789bb3994b0a8144617fd32221c201c6157f3ccb76613
 
 do_configure() {
 	cd "$wrksrc"
