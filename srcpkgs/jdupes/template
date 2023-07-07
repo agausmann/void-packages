@@ -1,6 +1,6 @@
 # Template file for 'jdupes'
 pkgname=jdupes
-version=1.23.0
+version=1.26.1
 revision=1
 build_style=gnu-makefile
 make_build_args="ENABLE_BTRFS=1 ENABLE_DEDUPE=1"
@@ -10,12 +10,12 @@ short_desc="Powerful duplicate file finder and an enhanced fork of fdupes"
 maintainer="cinerea0 <cinerea0@protonmail.com>"
 license="MIT"
 homepage="https://github.com/jbruchon/jdupes"
-changelog="https://raw.githubusercontent.com/jbruchon/jdupes/master/CHANGES"
+changelog="https://raw.githubusercontent.com/jbruchon/jdupes/master/CHANGES.txt"
 distfiles="https://github.com/jbruchon/jdupes/archive/refs/tags/v${version}.tar.gz"
-checksum=5fdf7646518a26fefc322d7c9a5953c61db72d96626120ffa7f18197b59153d1
+checksum=09153824320c65ad529f8f97cd3b7e792c50e9f9018192ea1a76f2e33a196225
 
 post_install() {
-	vlicense LICENSE
+	vlicense LICENSE.txt
 }
 
 do_check() {

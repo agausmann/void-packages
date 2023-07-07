@@ -1,6 +1,6 @@
 # Template file for 'rustypaste'
 pkgname=rustypaste
-version=0.9.0
+version=0.11.1
 revision=1
 build_style=cargo
 make_check_args="-- --test-threads 1"
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://github.com/orhun/rustypaste"
 changelog="https://raw.githubusercontent.com/orhun/rustypaste/master/CHANGELOG.md"
 distfiles="https://github.com/orhun/rustypaste/archive/refs/tags/v${version}.tar.gz"
-checksum=16197a881ae0f1fd32d90956b656d82429a1bb111c918837487eef943a14fd76
+checksum=5e6be43231b9dc1765390414c2d370717444be52f1ce4f23cf454c50bdfbb44d
 conf_files="/etc/rustypaste/config.toml"
 
 system_accounts="_rustypaste"

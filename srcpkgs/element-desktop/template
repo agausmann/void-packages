@@ -1,7 +1,7 @@
 # Template file for 'element-desktop'
 pkgname=element-desktop
-version=1.11.31
-revision=3
+version=1.11.34
+revision=1
 create_wrksrc=yes
 conf_files="/etc/${pkgname}/config.json"
 hostmakedepends="git yarn nodejs rust cargo python3 curl
@@ -17,8 +17,8 @@ homepage="https://element.io"
 changelog="https://raw.githubusercontent.com/vector-im/element-desktop/develop/CHANGELOG.md"
 distfiles="https://github.com/vector-im/element-desktop/archive/v${version}.tar.gz>element-desktop-v${version}.tar.gz
  https://github.com/vector-im/element-web/archive/v${version}.tar.gz>element-web-v${version}.tar.gz"
-checksum="5152bcdab011deb7e5d7c713edd268bf4266dedde87ff735ad146e9eb12e205b
- 6597d59f12a0f878fa363d6253a506583f686284d81a50baceb2965a4e0cce18"
+checksum="5163d11740bb9f9660c919a28c5a6fe2828660849088ce1e6b40b558736afd18
+ 54bfef3484f18135408b427ff253496e36a6ad3788b1df3c6c7ba0655e23e21b"
 
 export USE_SYSTEM_APP_BUILDER=true
 

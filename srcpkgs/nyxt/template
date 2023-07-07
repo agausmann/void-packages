@@ -1,19 +1,19 @@
 # Template file for 'nyxt'
 pkgname=nyxt
-version=2.2.4
-revision=3
+version=3.3.0
+revision=1
 create_wrksrc=yes
 build_style=gnu-makefile
 make_build_target=all
-hostmakedepends="sbcl git"
+hostmakedepends="sbcl git pkg-config"
 makedepends="webkit2gtk libfixposix-devel libgirepository"
 depends="dbus xclip enchant2 webkit2gtk libfixposix libgirepository"
 short_desc="Keyboard-oriented, extensible web-browser"
-maintainer="0x0f0f0f <sudo-woodo3@protonmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-3-Clause"
 homepage="https://nyxt.atlas.engineer/"
 distfiles="https://github.com/atlas-engineer/nyxt/releases/download/${version}/${pkgname}-${version}-source-with-submodules.tar.xz"
-checksum=04f740f8405044cc89920d41d340d6d137e1d4f7be098d4813d1523f73d725a9
+checksum=648809d19f9f971d6025c17a6ad08493af87cb94f96a1edcb994122f9f92436c
 # Disable check because ASDF/USER::PROVE is not installed
 make_check=no
 nostrip=yes

@@ -1,6 +1,6 @@
 # Template file for 'aide'
 pkgname=aide
-version=0.18.3
+version=0.18.5
 revision=1
 build_style=gnu-configure
 configure_args="--with-mhash --with-posix-acl --with-prelink --with-xattr
@@ -16,7 +16,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://aide.github.io/"
 distfiles="https://github.com/aide/aide/releases/download/v${version}/aide-${version}.tar.gz"
-checksum=d47da12c4bf085bfdf1828e087a1db5195a4d217ff4c89f40dbd94e2a887a6a2
+checksum=58d63e6d16f5af296da427313861222426aec7610f4dbc76a1bc76310e1f1db5
 
 export MHASH_CFLAGS="=I${XBPS_CROSS_BASE}/usr/include"
 export MHASH_LIBS="-L${XBPS_CROSS_BASE}/usr/lib -lmhash"

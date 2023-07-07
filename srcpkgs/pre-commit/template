@@ -1,6 +1,6 @@
 # Template file for 'pre-commit'
 pkgname=pre-commit
-version=3.3.1
+version=3.3.3
 revision=1
 build_style=python3-module
 hostmakedepends="python3-setuptools"
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://pre-commit.com/"
 changelog="https://raw.githubusercontent.com/pre-commit/pre-commit/main/CHANGELOG.md"
 distfiles="${PYPI_SITE}/p/pre-commit/pre_commit-${version}.tar.gz"
-checksum=733f78c9a056cdd169baa6cd4272d51ecfda95346ef8a89bf93712706021b907
+checksum=a2256f489cd913d575c145132ae196fe335da32d91a8294b7afe6622335dd023
 make_check=no # unpackaged: pytest-env re-assert
 
 post_install() {
