@@ -1,6 +1,6 @@
 # Template file for 'zen-kernel'
 pkgname=zen-kernel
-version=6.4.2.zen1
+version=6.4.3.zen1
 revision=1
 _srctag=${version%.*}-${version##*.}
 short_desc="Linux kernel and modules (Zen patchset)"
@@ -9,7 +9,7 @@ license="GPL-2.0-only"
 homepage="https://github.com/zen-kernel/zen-kernel"
 distfiles="https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${_srctag}.tar.gz"
 
-checksum=aa14b83d3171879fd85022872baef8bae3a0f49cadabefc35db6c13bd5ad86b3
+checksum=ebd46938f8a8fa830a64b914f4790679436862361f0edc54d89bb58e7d3407c1
 python_version=3
 
 # XXX Restrict archs until a proper <arch>-dotconfig is available in FILESDIR.
