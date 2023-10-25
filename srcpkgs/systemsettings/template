@@ -1,6 +1,6 @@
 # Template file for 'systemsettings'
 pkgname=systemsettings
-version=5.27.6
+version=5.27.8
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -14,4 +14,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, GFDL-1.2-only"
 homepage="https://invent.kde.org/plasma/systemsettings"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=bc2c471f1e13e9d063b616552bdc0d831c430338f3e3b32bbb3c0418956e789d
+checksum=3e9411715a2dfb202961110b671d207175056c22af51bdffce01336eb8743fb9

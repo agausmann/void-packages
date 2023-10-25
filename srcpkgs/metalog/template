@@ -1,18 +1,18 @@
 # Template file for 'metalog'
 pkgname=metalog
-version=20230707
-revision=1
+version=20230719
+revision=2
 build_style=gnu-configure
 conf_files="/etc/metalog.conf"
 hostmakedepends="autoconf autoconf-archive automake pkg-config"
 makedepends="pcre2-devel"
 short_desc="Modern replacement for syslogd and klogd"
-maintainer="teldra <teldra@rotce.de>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/hvisage/metalog"
 changelog="https://github.com/hvisage/metalog/blob/master/NEWS"
 distfiles="https://github.com/hvisage/metalog/archive/metalog-${version}.tar.gz"
-checksum=135caf2cc9ce48364f7cd39a58c904cbd63631c9963e1c239b2df8b2ca023dc1
+checksum=563b41409ee9e396c3709f002b59ccd9aff901b7d7e3adee6344e4b599a02105
 
 pre_configure() {
 	./autogen.sh

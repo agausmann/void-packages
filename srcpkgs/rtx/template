@@ -1,17 +1,19 @@
 # Template file for 'rtx'
 pkgname=rtx
-version=1.34.1
+version=2023.10.1
 revision=1
 build_style=cargo
 # skip cli tests: fail to find executable
 make_check_args="-- --skip cli::direnv::exec::tests"
+hostmakedepends="pkg-config"
+makedepends="openssl-devel"
 short_desc="Polyglot runtime manager (asdf rust clone)"
 maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="MIT"
 homepage="https://github.com/jdxcode/rtx"
 changelog="https://github.com/jdxcode/rtx/releases"
 distfiles="https://github.com/jdxcode/rtx/archive/v${version}.tar.gz>${pkgname}-${version}.tar.gz"
-checksum=d0a001b859190647c89b72462e8a524d28eedb043db64bae5eb84f1a721c1e21
+checksum=f722c106eb5b07a2f3b1b3ace9957943fccb84a1c5502240852ad3e915d55f0c
 
 post_install() {
 	vlicense LICENSE

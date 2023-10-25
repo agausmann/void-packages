@@ -1,6 +1,6 @@
 # Template file for 'fcitx5'
 pkgname=fcitx5
-version=5.0.23
+version=5.1.1
 revision=1
 build_style=cmake
 build_helper=qemu
@@ -21,10 +21,11 @@ homepage="https://fcitx-im.org/wiki/Fcitx"
 _en_dict_ver=20121020
 distfiles="https://download.fcitx-im.org/fcitx5/fcitx5/fcitx5-${version}.tar.xz
  https://download.fcitx-im.org/data/en_dict-${_en_dict_ver}.tar.gz"
-checksum="04f209a6406225ce19785f8d9d3bdb253944586edcfa9601414fcdda8a1b13a0
+checksum="6e72f8d7e4bd2628982cef37de66a296cd5dc919702e815ad504f47e46676971
  c44a5d7847925eea9e4d2d04748d442cd28dd9299a0b572ef7d91eac4f5a6ceb"
 skip_extraction=en_dict-${_en_dict_ver}.tar.gz
 lib32disabled=yes
+CXXFLAGS="-D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 
 # Warning: do NOT enable backtrace for musl, do NOT add libexecinfo-devel
 

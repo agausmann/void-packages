@@ -1,6 +1,6 @@
 # Template file for 'fcitx5-unikey'
 pkgname=fcitx5-unikey
-version=5.0.13
+version=5.1.1
 revision=1
 build_style=cmake
 #configure_args=""
@@ -16,7 +16,7 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://fcitx-im.org/wiki/Fcitx"
 distfiles="https://download.fcitx-im.org/fcitx5/fcitx5-unikey/fcitx5-unikey-${version}.tar.xz"
-checksum=7e6db370927d5c76782c129fe39c142c83f85bc2abfd1d599bc91364b473d78e
+checksum=616149b2594847b1563789114dc5af96194acac8540faaaa96966ffaa4bec761
 conflicts="fcitx-unikey>=0"
 
 fcitx5-unikey-macro-editor_package() {

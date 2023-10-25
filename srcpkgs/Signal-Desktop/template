@@ -1,20 +1,20 @@
 # Template file for 'Signal-Desktop'
 pkgname=Signal-Desktop
-version=6.26.0
+version=6.36.0
 revision=1
 # Signal officially only supports x86_64 
 # x86_64-musl could potentially work based on the Alpine port:
 # https://git.alpinelinux.org/aports/tree/testing/signal-desktop
 # ARM: https://github.com/signalapp/Signal-Desktop/issues/3410
 archs="x86_64"
-hostmakedepends="git git-lfs nodejs-lts python3 tar"
+hostmakedepends="git git-lfs nodejs-lts python3 python3-distutils-extra tar"
 depends="cairo gtk+3 libvips pango"
 short_desc="Signal Private Messenger for Linux"
 maintainer="anelki <akierig@fastmail.de>"
 license="AGPL-3.0-only"
 homepage="https://github.com/signalapp/Signal-Desktop"
 distfiles="https://github.com/signalapp/Signal-Desktop/archive/v${version}.tar.gz"
-checksum=4c9fbe43c4e6727dc4a4c10507346b4f210f3b70373cc2641617c09d7bc8bb15
+checksum=784621a5f0751c0496ece5532da43f307583c35ef5fc53d9607da3040f199df4
 nostrip_files="signal-desktop"
 
 post_extract() {

@@ -1,12 +1,12 @@
 # Template file for 'angrysearch'
 pkgname=angrysearch
 version=1.0.3
-revision=1
+revision=2
 pycompile_dirs="usr/share/angrysearch"
 hostmakedepends="python3"
 depends="python3-PyQt5 xdg-utils"
 short_desc="Instant file search"
-maintainer="DirectorX <void.directorx@protonmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/dotheevo/angrysearch/"
 distfiles="http://github.com/dotheevo/angrysearch/archive/v${version}.tar.gz"

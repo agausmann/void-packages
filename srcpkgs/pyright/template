@@ -1,6 +1,6 @@
 # Template file for 'pyright'
 pkgname=pyright
-version=1.1.318
+version=1.1.331
 revision=1
 build_wrksrc="packages/pyright"
 hostmakedepends="nodejs python3"
@@ -11,7 +11,11 @@ license="MIT"
 homepage="https://microsoft.github.io/pyright"
 changelog="https://github.com/microsoft/pyright/releases"
 distfiles="https://github.com/microsoft/pyright/archive/refs/tags/${version}.tar.gz"
-checksum=749f5b8accd3cadca942e99dfdd2cc981f160486485866e77b612940990aad38
+checksum=3dbb9e1d3cf7e0405ed25388a627b3c1b776a50fd35a21a0d4e4a3a715c41f93
+
+case "$XBPS_TARGET_MACHINE" in
+	i686*) broken="lerna doesn't support i686" ;;
+esac
 
 do_configure() {
 	cd "$wrksrc"

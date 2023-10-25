@@ -1,6 +1,6 @@
 # Template file for 'dbeaver'
 pkgname=dbeaver
-version=23.1.2
+version=23.2.2
 revision=1
 # the build downloads binaries linked to glibc
 archs="x86_64 aarch64"
@@ -12,7 +12,7 @@ license="Apache-2.0"
 homepage="https://dbeaver.io"
 changelog="https://dbeaver.io/news/"
 distfiles="https://github.com/dbeaver/dbeaver/archive/${version}.tar.gz"
-checksum=575f1ce2fa464f6f6bfca44b8c9ffa3ff5314d395bfa0aeb08860627e7d3e8ab
+checksum=7bea1833a26e928e43f8dc977b8a09949b7b1c63959723e5c26d87e24a26dbdb
 nopie=true
 
 do_build() {
@@ -26,5 +26,7 @@ do_install() {
 	vmkdir /usr/bin
 	ln -s /usr/lib/dbeaver/dbeaver ${DESTDIR}/usr/bin/dbeaver
 
+	vinstall product/community/icons/dbeaver.png 644 usr/share/pixmaps
+	vinstall product/community/icons/dbeaver.xpm 644 usr/share/pixmaps
 	vinstall ${FILESDIR}/dbeaver.desktop 0644 usr/share/applications
 }

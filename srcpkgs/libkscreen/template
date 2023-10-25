@@ -1,6 +1,6 @@
 # Template file for 'libkscreen'
 pkgname=libkscreen
-version=5.27.6
+version=5.27.8
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/plasma/libkscreen"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=c1a9373faab5a7ec77980a696a7599583b4fda8e1f12da2c5716bc9562789efb
+checksum=94562fd58de297a310295e1f71ba19ce91c3a4104eae40b2b3212ce3c66a8320
 
 libkscreen-devel_package() {
 	short_desc+=" - development"

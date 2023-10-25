@@ -1,6 +1,6 @@
 # Template file for 'harfbuzz'
 pkgname=harfbuzz
-version=8.0.1
+version=8.2.2
 revision=1
 build_style=meson
 build_helper="gir qemu"
@@ -21,7 +21,7 @@ license="MIT"
 homepage="http://www.freedesktop.org/wiki/Software/HarfBuzz/"
 changelog="https://github.com/harfbuzz/harfbuzz/raw/main/NEWS"
 distfiles="https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz"
-checksum=c1ce780acd385569f25b9a29603d1d5bc71e6940e55bfdd4f7266fad50e42620
+checksum=e433ad85fbdf57f680be29479b3f964577379aaf319f557eb76569f0ecbc90f3
 
 if [ "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=enabled"

@@ -1,6 +1,6 @@
 # Template file for 'giac'
 pkgname=giac
-version=1.9.0.57
+version=1.9.0.59
 revision=1
 build_style=gnu-configure
 configure_args="--disable-micropy --disable-quickjs"
@@ -15,7 +15,7 @@ license="GPL-3.0-or-later"
 homepage="https://www-fourier.ujf-grenoble.fr/~parisse/giac.html"
 changelog="https://www-fourier.ujf-grenoble.fr/~parisse/install_en#new"
 distfiles="https://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/giac_${version%.*}-${version##*.}.tar.gz"
-checksum=b81f9a24646be4989e68faf12cb8bdae3688f0440bec2e1a62e97af702684c1b
+checksum=c5b1ba93f42e758f46d541b28d9350f165eaf8c459bdea80f4a73a72d43c10de
 
 # need more than 4*65536 stack, see try_parse() in gen.cc line 11812
 LDFLAGS="-Wl,-z,stack-size=2097152"
@@ -56,6 +56,10 @@ pre_configure() {
 post_install() {
 	# remove duplicates
 	rm -r ${DESTDIR}/usr/share/doc
+
+	echo "giac: check that '#include <giac/giac.h>' works (see #45708)"
+	echo '#include <giac/giac.h>' |
+		${CC} -c -isystem "${DESTDIR}/usr/include" -xc++ - -o /dev/null
 }
 
 libgiac_package() {

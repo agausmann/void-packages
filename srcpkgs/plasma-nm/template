@@ -1,6 +1,6 @@
 # Template file for 'plasma-nm'
 pkgname=plasma-nm
-version=5.27.6
+version=5.27.8
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF5_HOST_TOOLING=/usr/lib/cmake"
@@ -16,4 +16,4 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/plasma/plasma-nm"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=0a649ee81433340eb106889d06a3b6592b99dc41dab898f9dcd14312fb68d9c9
+checksum=a75493c3299a48aa0c86d8208ba2c0696057b4d6ca43d866de0b22ac14643a66

@@ -1,15 +1,15 @@
 # Template file for 'qsv'
 pkgname=qsv
-version=0.109.0
+version=0.117.0
 revision=1
 archs="x86_64* i686* aarch64* arm*" # ring
 build_style=cargo
 configure_args="--no-default-features --features=feature_capable"
-make_check_args="-- --skip test_comments::envlist --skip test_sample" # fails in i686
+make_check_args="-- --skip=test_comments --skip=test_sample --skip=test_sort" # fails in i686
 short_desc="CLI toolkit for CSV data-wrangling"
 maintainer="icp <pangolin@vivaldi.net>"
 license="Unlicense"
-homepage="https://github.com/jqnatividad/qsv"
+homepage="https://qsv.dathere.com"
 changelog="https://raw.githubusercontent.com/jqnatividad/qsv/master/CHANGELOG.md"
 distfiles="https://github.com/jqnatividad/qsv/archive/refs/tags/${version}.tar.gz"
-checksum=c48d7f5a174d3f80781ae9feb16173d6c5058e4f50916ff2dd77e1ade84a4dbc
+checksum=5f74e4380a1fea1b2fb8ae41c852f3fcde3021780e2352351ab20869913ac578

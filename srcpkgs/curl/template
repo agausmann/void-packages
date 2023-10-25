@@ -1,6 +1,6 @@
 # Template file for 'curl'
 pkgname=curl
-version=8.1.2
+version=8.4.0
 revision=1
 build_style=gnu-configure
 configure_args="ac_cv_sizeof_off_t=8 --enable-threaded-resolver --enable-ipv6
@@ -25,9 +25,9 @@ license="MIT"
 homepage="https://curl.se"
 changelog="https://curl.se/changes.html"
 distfiles="https://curl.se/download/curl-${version}.tar.gz"
-checksum=2e5a9b8fcdc095bdd2f079561f369de71c5eb3b80f00a702fbe9a8b8d9897891
+checksum=816e41809c043ff285e8c0f06a75a1fa250211bbfb2dc0a037eeef39f1a9e427
 build_options="gnutls gssapi ldap rtmp ssh ssl zstd"
-build_options_default="ssl zstd"
+build_options_default="ssh ssl zstd"
 vopt_conflict ssl gnutls
 
 if [ "$CROSS_BUILD" ]; then

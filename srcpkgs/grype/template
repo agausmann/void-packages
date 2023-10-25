@@ -1,6 +1,6 @@
 # Template file for 'grype'
 pkgname=grype
-version=0.64.1
+version=0.70.0
 revision=1
 build_style=go
 build_helper=qemu
@@ -11,7 +11,7 @@ maintainer="Jan Christian Grünhage <jan.christian@gruenhage.xyz>"
 license="Apache-2.0"
 homepage="https://github.com/anchore/grype"
 distfiles="https://github.com/anchore/grype/archive/refs/tags/v${version}.tar.gz"
-checksum=3b7a7ddf893cc02787248801f9f857141264372e38fb51dfbb5e397732063517
+checksum=eb54c0d1e6d824d7fc7240a8e9dd15b642bb4ca387f7bbc8de2cbff779635a19
 
 post_install() {
 	grype="${DESTDIR}/usr/bin/grype"

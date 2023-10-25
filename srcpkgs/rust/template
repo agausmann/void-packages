@@ -8,17 +8,17 @@
 # uploaded to https://repo-default.voidlinux.org/distfiles/
 #
 pkgname=rust
-version=1.71.0
+version=1.73.0
 revision=1
-hostmakedepends="cmake curl pkg-config python3 tar cargo-bootstrap"
+hostmakedepends="curl pkg-config python3 tar cargo-bootstrap"
 makedepends="libffi-devel ncurses-devel libxml2-devel zlib-devel llvm15"
-depends="rust-std"
+depends="rust-std gcc"
 short_desc="Safe, concurrent, practical systems language"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="MIT, Apache-2.0"
 homepage="https://www.rust-lang.org/"
 distfiles="https://static.rust-lang.org/dist/rustc-${version}-src.tar.gz"
-checksum=a667e4abdc5588ebfea35c381e319d840ffbf8d2dbfb79771730573642034c96
+checksum=96d62e6d1f2d21df7ac8acb3b9882411f9e7c7036173f7f2ede9e1f1f6b1bb3a
 lib32disabled=yes
 make_check=no # CBA for now
 python_version=3 # needed for python files in rust-src
@@ -40,11 +40,6 @@ if [ "$CROSS_BUILD" ]; then
 else
 	hostmakedepends+=" rust-bootstrap"
 fi
-
-# see https://github.com/rust-lang/rust/commit/1db81713f6475bebd0ae689ac7139c53d2843c48
-case "$XBPS_TARGET_MACHINE" in
-	armv*) makedepends+=" libatomic-devel" ;;
-esac
 
 # we need this because cargo verifies checksums of all files in vendor
 # crates when it builds and gives us no way to override or update the
@@ -119,7 +114,7 @@ do_configure() {
 		--enable-locked-deps \
 		--enable-verbose-tests \
 		--disable-full-bootstrap \
-		--disable-extended \
+		--enable-extended \
 		--disable-codegen-tests \
 		--disable-dist-src \
 		--${_llvm_shared}-llvm-link-shared \
@@ -133,6 +128,7 @@ do_configure() {
 		--release-description="Void Linux" \
 		--llvm-libunwind=no \
 		--llvm-config=/usr/bin/llvm-config \
+		--tools=clippy,rustdoc,rustfmt \
 		--set="rust.optimize=true" \
 		--set="rust.debug=false" \
 		--set="rust.codegen-units=1" \
@@ -203,6 +199,10 @@ do_install() {
 	tar xf build/dist/rust-docs-${version}-${RUST_TARGET}.tar.gz \
 	 -C "$DESTDIR/usr" --strip-components=2 --exclude=manifest.in
 	tar xf build/dist/rust-src-${version}.tar.gz \
+	 -C "$DESTDIR/usr" --strip-components=2 --exclude=manifest.in
+	tar xf build/dist/rustfmt-${version}-${RUST_TARGET}.tar.gz \
+	 -C "$DESTDIR/usr" --strip-components=2 --exclude=manifest.in
+	tar xf build/dist/clippy-${version}-${RUST_TARGET}.tar.gz \
 	 -C "$DESTDIR/usr" --strip-components=2 --exclude=manifest.in
 
 	vlicense COPYRIGHT

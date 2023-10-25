@@ -1,17 +1,17 @@
 # Template file for 'Waybar'
 pkgname=Waybar
-version=0.9.20
-revision=2
+version=0.9.22
+revision=1
 build_style=meson
 configure_args="-Dgtk-layer-shell=enabled -Dlibudev=enabled -Dman-pages=enabled
  -Dsystemd=disabled -Drfkill=enabled
- -Dlibnl=$(vopt_if libnl enabled disabled)
- -Dpulseaudio=$(vopt_if pulseaudio enabled disabled)
- -Ddbusmenu-gtk=$(vopt_if dbusmenugtk enabled disabled)
- -Dmpd=$(vopt_if mpd enabled disabled)
- -Dsndio=$(vopt_if sndio enabled disabled)
- -Djack=$(vopt_if jack enabled disabled)
- -Dwireplumber=$(vopt_if pipewire enabled disabled)"
+ $(vopt_feature libnl libnl)
+ $(vopt_feature pulseaudio pulseaudio)
+ $(vopt_feature dbusmenugtk dbusmenu-gtk)
+ $(vopt_feature mpd mpd)
+ $(vopt_feature sndio sndio)
+ $(vopt_feature jack jack)
+ $(vopt_feature pipewire wireplumber)"
 hostmakedepends="cmake pkg-config glib-devel wayland-devel scdoc
  $(vopt_if dbusmenugtk gobject-introspection)"
 makedepends="libevdev-devel libinput-devel wayland-devel gtkmm-devel spdlog eudev-libudev-devel
@@ -30,7 +30,7 @@ license="MIT"
 homepage="https://github.com/Alexays/Waybar"
 changelog="https://github.com/Alexays/Waybar/releases"
 distfiles="https://github.com/Alexays/Waybar/archive/refs/tags/${version}.tar.gz"
-checksum=e300183defece4799b6dfb7aea72400492ec6e330217c22158a334f35532d014
+checksum=61e8d934c178b9da8212162398d2be44c5606c92b9a3503526993bb204206c6b
 conf_files="/etc/xdg/waybar/config /etc/xdg/waybar/style.css"
 
 build_options="libnl pulseaudio dbusmenugtk mpd sndio jack pipewire"

@@ -1,6 +1,6 @@
 # Template file for 'justbuild'
 pkgname=justbuild
-version=1.1.4
+version=1.2.2
 revision=1
 create_wrksrc=yes
 hostmakedepends="jo pandoc pkg-config python3 tar unzip wget"
@@ -13,11 +13,19 @@ license="Apache-2.0"
 homepage="https://github.com/just-buildsystem/justbuild/"
 changelog="https://github.com/just-buildsystem/justbuild/blob/master/CHANGELOG.md"
 distfiles="https://github.com/just-buildsystem/justbuild/archive/v${version}.tar.gz"
-checksum=850b570ae6da047a5227dca9029225ef7d7d988522924e445e90ae62bf2ca6ae
+checksum=6a9c8c9793e9f1ad9f57ac81856c8263929a41a7346d01a4a57df2bb1b33db4e
 conflicts="just>=0"
 nocross="not supported by bootstrapping"
 
+case "$XBPS_TARGET_MACHINE" in
+	*-musl) makedepends+=" libexecinfo-devel"
+esac
+
+CFLAGS="-Wno-error -Wno-deprecated-declarations"
+CXXFLAGS="-Wno-error -Wno-deprecated-declarations"
+
 do_build() {
+	rm -rf just-work
 	mkdir -p just-work
 	export JUST_BUILD_CONF=$(jo \
 		AR=/usr/bin/ar \
@@ -25,7 +33,9 @@ do_build() {
 		CC=$CC \
 		CXX=$CXX \
 		CFLAGS=$(jo -a -- $CFLAGS) \
+		ADD_CFLAGS=$(jo -a -- $CFLAGS) \
 		CXXFLAGS=$(jo -a -- $CXXFLAGS) \
+		ADD_CXXFLAGS=$(jo -a -- $CXXFLAGS) \
 		LDFLAGS=$(jo -a -- $LDFLAGS) \
 		SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH \
 		VERSION_EXTRA_SUFFIX=-void
@@ -34,9 +44,12 @@ do_build() {
 		bazel_remote_apis \
 		cli11 \
 		com_github_microsoft_gsl \
+		com_google_absl \
 		google_apis \
 		protobuf
 	)
+	sed -i "s/TaskSystem[(][0-9]*[)]/TaskSystem($XBPS_MAKEJOBS)/" \
+		justbuild-${version}/bin/parallel-bootstrap-traverser.py
 
 	PACKAGE=YES LOCALBASE=/usr python3 \
 		justbuild-${version}/bin/bootstrap.py \

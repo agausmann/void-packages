@@ -1,15 +1,15 @@
 # Template file for 'bottom'
 pkgname=bottom
-version=0.9.3
+version=0.9.6
 revision=1
 build_style=cargo
 short_desc="Yet another cross-platform graphical process/system monitor"
-maintainer="Neel Chotai <neel@chot.ai>"
+maintainer="cinerea0 <cinerea0@protonmail.com>"
 license="MIT"
 homepage="https://github.com/ClementTsang/bottom"
 changelog="https://raw.githubusercontent.com/ClementTsang/bottom/master/CHANGELOG.md"
 distfiles="https://github.com/ClementTsang/bottom/archive/${version}.tar.gz"
-checksum=53a1466c3d2ed8f38401e8929cf2da796e703e4d70339d215f855b2304c07f72
+checksum=202130e0d7c362d0d0cf211f6a13e31be3a02f13f998f88571e59a7735d60667
 
 pre_build() {
 	export BTM_GENERATE=true

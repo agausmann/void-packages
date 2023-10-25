@@ -1,0 +1,41 @@
+# Template file for 'eza'
+pkgname=eza
+version=0.15.0
+revision=1
+build_style=cargo
+hostmakedepends="pandoc pkg-config"
+makedepends="libgit2-devel"
+short_desc="Modern, maintained replacement for ls"
+maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+license="MIT"
+homepage="https://eza.rocks"
+changelog="https://raw.githubusercontent.com/eza-community/eza/main/CHANGELOG.md"
+distfiles="https://github.com/eza-community/eza/archive/refs/tags/v${version}.tar.gz"
+checksum=e4cce5a6f60e6b7405af911e3f168cf17a1e86c33c292a449c1c25c15052967a
+
+post_patch() {
+	cargo update --package git2@0.18.1 --precise 0.17.2
+}
+
+post_install() {
+	vcompletion completions/bash/eza bash
+	vcompletion completions/fish/eza.fish fish
+	vcompletion completions/zsh/_eza zsh
+
+	for manpage in eza.1 eza_colors.5 eza_colors-explanation.5; do
+		pandoc --standalone -f markdown -t man man/${manpage}.md > ${manpage}
+		vman ${manpage}
+	done
+
+	vlicense LICENCE
+
+	ln -s eza ${DESTDIR}/usr/bin/exa
+}
+
+exa_package() {
+	depends="eza>=${version}_${revision}"
+	short_desc+=" - transitional dummy package"
+	pkg_install() {
+		vmove usr/bin/exa
+	}
+}

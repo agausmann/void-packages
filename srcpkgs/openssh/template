@@ -1,6 +1,6 @@
 # Template file for 'openssh'
 pkgname=openssh
-version=9.3p2
+version=9.5p1
 revision=1
 build_style=gnu-configure
 configure_args="--datadir=/usr/share/openssh
@@ -25,13 +25,15 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="BSD-2-Clause, ISC"
 homepage="https://www.openssh.com"
 distfiles="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/${pkgname}-${version}.tar.gz"
-checksum=200ebe147f6cb3f101fd0cdf9e02442af7ddca298dffd9f456878e7ccac676e8
+checksum=f026e7b79ba7fb540f75182af96dc8a8f1db395f922bbc9f6ca603672686086b
 conf_files="/etc/ssh/moduli /etc/ssh/ssh_config /etc/ssh/sshd_config /etc/pam.d/sshd"
-make_dirs="/var/chroot/ssh 0755 root root"
+make_dirs="
+ /var/chroot/ssh 0755 root root
+ /etc/ssh/sshd_config.d 0755 root root"
 
 # Package build options
 build_options="fido2 gssapi ldns ssl"
-build_options_default="fido2 ldns ssl"
+build_options_default="fido2 gssapi ldns ssl"
 desc_option_fido2="Enable support for FIDO2 USB tokens"
 
 if [ "$build_option_fido2" ]; then
@@ -42,7 +44,7 @@ if [ "$build_option_ldns" -a -z "$build_option_ssl" ]; then
 	broken="option 'ldns' requires option 'ssl'"
 fi
 
-CFLAGS="-Wno-format-truncation -Wno-stringop-truncation -Wno-maybe-uninitialized"
+CFLAGS="-Wno-format-truncation -Wno-stringop-truncation -Wno-maybe-uninitialized -Wno-deprecated-declarations"
 
 case $XBPS_TARGET_MACHINE in
 	i686-musl)
@@ -64,12 +66,6 @@ post_install() {
 	vbin contrib/ssh-copy-id
 	vman contrib/ssh-copy-id.1
 	vlicense LICENCE
-
-	# configure to use PAM
-	vsed -i ${DESTDIR}/etc/ssh/sshd_config \
-		-e 's|^#\(UsePAM\) no|\1 yes|g' \
-		-e 's|^#\(KbdInteractiveAuthentication\) yes|\1 no|g' \
-		-e 's|^#\(PrintMotd\) yes|\1 no|g'
 
 	vinstall ${FILESDIR}/sshd.pam 644 etc/pam.d sshd
 	vsv sshd

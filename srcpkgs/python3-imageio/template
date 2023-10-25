@@ -1,6 +1,6 @@
 # Template file for 'python3-imageio'
 pkgname=python3-imageio
-version=2.31.1
+version=2.31.6
 revision=1
 build_style=python3-module
 # tests have unpackaged dependencies, require network or missing data files
@@ -16,7 +16,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="BSD-2-Clause"
 homepage="https://github.com/imageio/imageio"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=7aef6dc3d10e270404ab9f826612a4b851198beacea5416af615bf29d87e2a35
+checksum=62166c8fba4d081cf09fca51b2901f523ea2d137d84fe8dcfbfff4ce01cbf1dc
 
 post_install() {
 	vlicense LICENSE
