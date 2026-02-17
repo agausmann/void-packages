@@ -1,21 +1,18 @@
 # Template file for 'rofi-calc'
 pkgname=rofi-calc
-version=2.2.0
+version=2.5.0
 revision=1
-build_style=gnu-configure
-hostmakedepends="automake libtool pkg-config"
+build_style=meson
+hostmakedepends="pkg-config"
 makedepends="rofi-devel"
 depends="rofi qalculate"
 short_desc="Do live calcualtions in rofi"
 maintainer="Alexander Gehrke <void@qwertyuiop.de>"
 license="MIT"
 homepage="https://github.com/svenstaro/rofi-calc"
+changelog="https://raw.githubusercontent.com/svenstaro/rofi-calc/refs/heads/master/CHANGELOG.md"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=64fbfaaa22a092d2d7fede20ff95942a912b27c6264785126fb054dfbe54c5b4
-
-pre_configure() {
-	autoreconf -i
-}
+checksum=92cf4a1b2a42067d162cc7e87556644dab5db335cb3a65bc30e97467d7347b75
 
 post_install() {
 	vlicense LICENSE

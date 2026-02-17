@@ -1,22 +1,22 @@
 # Template file for 'fuzzel'
 pkgname=fuzzel
-version=1.9.2
-revision=1
+version=1.14.0
+revision=2
 build_style=meson
-configure_args="-Dsvg-backend=librsvg"
+configure_args="-Dsvg-backend=resvg -Denable-cairo=disabled"
 hostmakedepends="pkg-config scdoc wayland-devel"
-makedepends="cairo-devel fcft-devel librsvg-devel libpng-devel
+makedepends="fcft-devel libresvg-devel libpng-devel
  libxkbcommon-devel pixman-devel tllist wayland-devel wayland-protocols"
 short_desc="Application launcher for wlroots based Wayland compositors"
-maintainer="Isaac Freund <mail@isaacfreund.com>"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://codeberg.org/dnkl/fuzzel"
 changelog="https://codeberg.org/dnkl/fuzzel/raw/branch/master/CHANGELOG.md"
 distfiles="https://codeberg.org/dnkl/fuzzel/archive/${version}.tar.gz"
-checksum=fb68a09a6f6f3dde8266177b1bef6f5c91b3bf60e9925eea7887ad2fa81d2183
+checksum=f46387b29e855990614c0b699fda99130d1406f65e5ea8b447c8f7ac4b64efe4
 
 post_install() {
-	rm "${PKGDESTDIR}/usr/share/doc/fuzzel/CHANGELOG.md"
-	rm "${PKGDESTDIR}/usr/share/doc/fuzzel/LICENSE"
+	rm "${DESTDIR}/usr/share/doc/fuzzel/CHANGELOG.md"
+	rm "${DESTDIR}/usr/share/doc/fuzzel/LICENSE"
 	vlicense LICENSE
 }

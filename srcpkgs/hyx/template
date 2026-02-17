@@ -1,14 +1,14 @@
 # Template file for 'hyx'
 pkgname=hyx
-version=2021.06.09
+version=2026.01.11
 revision=1
 build_style=gnu-makefile
 short_desc="Minimalistic but powerful console hex editor"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://yx7.cc/code/"
-distfiles="https://yx7.cc/code/${pkgname}/${pkgname}-${version}.tar.xz"
-checksum=8d4f14e58584d6cc8f04e43ca38042eed218882a389249c20b086730256da5eb
+distfiles="https://yx7.cc/code/hyx/hyx-${version}.tar.xz"
+checksum=550863c9e6a2c0e2618c16a562c8ee995e88c1d30e62abfdf4ecb819b3c4df54
 
 do_install() {
 	vbin hyx

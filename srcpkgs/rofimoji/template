@@ -1,17 +1,17 @@
 # Template file for 'rofimoji'
 pkgname=rofimoji
-version=6.2.0
-revision=1
+version=6.7.0
+revision=2
 build_style=python3-pep517
-hostmakedepends="python3-poetry-core"
+hostmakedepends="hatchling"
 depends="python3-ConfigArgParse"
 short_desc="Simple character picker using rofi"
-maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://github.com/fdw/rofimoji"
 changelog="https://raw.githubusercontent.com/fdw/rofimoji/main/CHANGELOG.md"
 distfiles="https://github.com/fdw/rofimoji/archive/refs/tags/${version}.tar.gz"
-checksum=21da8e6879ac16d774f3ce6dfcd1783cec891ad172617eead2c10597f477d9a9
+checksum=9b537d8936a4e4092bbf6cfdc66ba8908b7300a3027ee44c49930199f3674dc3
 
 post_install() {
 	vlicense LICENSE

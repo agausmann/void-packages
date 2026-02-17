@@ -1,30 +1,28 @@
 # Template file for 'neomutt'
 pkgname=neomutt
-version=20230517
-revision=2
-create_wrksrc=true
-build_wrksrc="${pkgname}-${version}"
+version=20250905
+revision=1
 build_style=configure
 configure_args="--ssl --gpgme --notmuch --gdbm --lua --sasl --zlib --tdb
- --rocksdb"
-make_check_target=test
+ --rocksdb --autocrypt --sqlite --pcre2 --zstd"
 conf_files="/etc/neomuttrc"
 # neomutt needs either w3m/lynx/elinks to build manual.html
 hostmakedepends="docbook-xsl gettext libxslt perl tcl w3m pkg-config"
 makedepends="aspell-devel gdbm-devel gettext-devel gpgme-devel
  rocksdb-devel tdb-devel ncurses-devel libidn2-devel libnotmuch-devel
- openssl-devel libsasl-devel lua54-devel zlib-devel"
+ openssl-devel libsasl-devel lua54-devel zlib-devel sqlite-devel libzstd-devel
+ pcre2-devel"
 depends="mime-types"
 short_desc="Mutt with misc fixes and feature patches"
 maintainer="Toyam Cox <Vaelatern@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://neomutt.org/"
-_test_files_hash=34f79ee9d91863a97f6e18700aea51157b8610cf
+_test_files_hash=00efc8388110208e77e6ed9d8294dfc333753d54
 distfiles="https://github.com/neomutt/neomutt/archive/${version}.tar.gz
  https://github.com/neomutt/neomutt-test-files/archive/${_test_files_hash}.tar.gz"
-checksum="4ac277b40e7ed5d67ba516338e2b26cc6810aa37564f6e9a2d45eb15b3a9213e
- 4507e70e7c8512c993d9188cf320aea601580345ae9fb0c399ed1402d4e39b1f"
-python_version=3
+checksum="f409fa3803bfc540869b78719400bceda216842e4da024f83ca3060241d9c516
+ 2865e258034a72e498fdd1810071d9ab7559297a5f67203ea163cfdc4192dea4"
+skip_extraction="${_test_files_hash}.tar.gz"
 
 # fix:
 if [ "${XBPS_CROSS_BASE}" ]; then
@@ -33,18 +31,6 @@ if [ "${XBPS_CROSS_BASE}" ]; then
 	configure_args="${configure_args} --with-sysroot=$XBPS_CROSS_BASE"
 fi
 
-case "${XBPS_TARGET_MACHINE}" in
-	x86_64-musl)
-		# FIXME: error: variable 'fp' has initializer but incomplete type
-		make_check=no # https://github.com/neomutt/neomutt/issues/3865
-		CFLAGS="-D_FILE_OFFSET_BITS=64 -DLARGEFILE_SOURCE=1"
-		;;
-	*-musl)
-		make_check=no # Same as in the x86_64-musl condition
-		;;
-	# Inquiry: Do we have largefile support on everywhere?
-esac
-
 post_install() {
 	# move dist to examples dir
 	vsconf contrib/oauth2/mutt_oauth2.py Muttrc.mutt_oauth2.dist
@@ -52,17 +38,18 @@ post_install() {
 	vsconf contrib/smime_keys Muttrc.smime_keys.dist
 }
 
-pre_check() {
+do_check() {
+	local _ec=0
+	mkdir -p test-files
+	vsrcextract -C test-files ${_test_files_hash}.tar.gz
 	(
-	 cd ${wrksrc}/neomutt-test-files-${_test_files_hash}/
+	 cd test-files
 	 ./setup.sh
 	)
-	export NEOMUTT_TEST_DIR=${wrksrc}/neomutt-test-files-${_test_files_hash}
-}
-
-post_check() {
-	# This is a file chmodded to 311 and can't be removed normally
-	chmod 777 ${wrksrc}/neomutt-test-files-${_test_files_hash}/maildir/damson
+	export NEOMUTT_TEST_DIR=${wrksrc}/test-files
+	make ${makejobs} test || _ec=1
+	chmod -R u+rwX test-files/maildir/damson
+	return $_ec
 }
 
 # REMARKS:

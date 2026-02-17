@@ -1,6 +1,6 @@
 # Template file for 'libdrm'
 pkgname=libdrm
-version=2.4.115
+version=2.4.131
 revision=1
 build_style=meson
 configure_args="-Dudev=true -Dvalgrind=disabled -Dinstall-test-programs=true"
@@ -10,8 +10,8 @@ short_desc="Userspace interface to kernel DRM services"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://dri.freedesktop.org/"
-distfiles="https://gitlab.freedesktop.org/mesa/drm/-/archive/libdrm-${version}/drm-libdrm-${version}.tar.gz"
-checksum=fd8b7c6e4e40d13c32ab67ace2cb6c71e08c9ca53124ff33ccadd74f604117e3
+distfiles="https://gitlab.freedesktop.org/mesa/libdrm/-/archive/libdrm-${version}/libdrm-libdrm-${version}.tar.gz"
+checksum=94fed0e93809d239fcbcf1d652753454e728ba887fb2175534219d0e67a81814
 
 case "$XBPS_TARGET_MACHINE" in
 	aarch64*) configure_args+=" -Dvc4=enabled";;

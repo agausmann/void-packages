@@ -1,17 +1,16 @@
 # Template file for 'kanshi'
 pkgname=kanshi
-version=1.4.0
+version=1.9.0
 revision=1
 build_style=meson
-hostmakedepends="pkg-config scdoc wayland-devel"
-makedepends="wayland-devel libvarlink-devel"
-short_desc="Output profiles automatically enabled/disabled on hotplug"
-maintainer="Stacy Harper <contact@stacyharper.net>"
+hostmakedepends="pkg-config scdoc wayland-devel vali"
+makedepends="wayland-devel vali-devel libscfg-devel"
+short_desc="Dynamic display configuration for Wayland"
+maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="MIT"
 homepage="https://wayland.emersion.fr/kanshi/"
-changelog="https://git.sr.ht/~emersion/kanshi/refs"
-distfiles="https://git.sr.ht/~emersion/kanshi/archive/v${version}.tar.gz"
-checksum=e9be76a969f526bd51217c0465f4f00bdb8ce176c1e58f08c7b2ed1b341ce653
+distfiles="https://gitlab.freedesktop.org/emersion/kanshi/-/archive/v${version}/kanshi-v${version}.tar.gz"
+checksum=2a61c2765055d29861e3bab639222033358ec547d58782299084bad86f5bd627
 
 post_install() {
 	vlicense LICENSE

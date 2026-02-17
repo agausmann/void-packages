@@ -1,7 +1,7 @@
 # Template file for 'python3-sphinx-tabs'
 pkgname=python3-sphinx-tabs
-version=3.4.4
-revision=1
+version=3.4.7
+revision=3
 build_style=python3-module
 hostmakedepends="python3-setuptools"
 # https://github.com/executablebooks/sphinx-tabs/issues/159
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://sphinx-tabs.readthedocs.io/en/latest/"
 changelog="https://github.com/executablebooks/sphinx-tabs/raw/master/CHANGELOG.md"
 distfiles="${PYPI_SITE}/s/sphinx-tabs/sphinx-tabs-${version}.tar.gz"
-checksum=f1b72c4f23d1ba9cdcaf880fd883524bc70689f561b9785719b8b3c3c5ed0aca
+checksum=991ad4a424ff54119799ba1491701aa8130dd43509474aef45a81c42d889784d
 make_check=no # unpackaged dependencies: pytest-regressions sphinx_testing rinohtype
 
 post_install() {

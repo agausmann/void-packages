@@ -1,13 +1,13 @@
 # Template file for 'golly'
 pkgname=golly
-version=4.1
-revision=3
+version=5.0
+revision=1
 build_wrksrc="gui-wx"
 build_style=gnu-makefile
 make_build_args="-f makefile-gtk GOLLYDIR=/usr/share/golly LUALIB=-llua5.4
  CXXC=\$(CXX) WX_CONFIG=wx-config-gtk3"
 make_install_args="${make_build_args}"
-hostmakedepends="python3"
+hostmakedepends="python3 python3-setuptools"
 makedepends="MesaLib-devel glu-devel lua54-devel python3-devel
  wxWidgets-gtk3-devel zlib-devel SDL2-devel"
 short_desc="Simulator for Conway's Game of Life and other cellular automata"
@@ -15,7 +15,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="http://golly.sourceforge.net/"
 distfiles="${SOURCEFORGE_SITE}/${pkgname}/${pkgname}-${version}-src.tar.gz"
-checksum=6c655a6ce2fd75c6ae7289da39d084162c6ed887a01c21c3760872e3ff6d60c8
+checksum=5835cde428153f9b840ba94a4359e5cb26eb302e7ac01a097cd7f5a5c8303611
 
 CXXFLAGS="-I../gollybase -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 

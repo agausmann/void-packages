@@ -1,10 +1,10 @@
 # Template file for 'eqonomize'
 pkgname=eqonomize
-version=1.5.5
-revision=1
+version=1.5.11
+revision=2
 build_style=qmake
-hostmakedepends="qt5-qmake qt5-host-tools"
-makedepends="qt5-charts-devel"
+hostmakedepends="qt6-base"
+makedepends="qt6-charts-private-devel qt6-base-devel"
 depends="desktop-file-utils hicolor-icon-theme"
 short_desc="Personal accounting software, with focus on efficiency and ease of use"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -12,4 +12,4 @@ license="GPL-3.0-or-later"
 homepage="http://eqonomize.github.io"
 changelog="https://raw.githubusercontent.com/Eqonomize/Eqonomize/master/ChangeLog"
 distfiles="https://github.com/Eqonomize/Eqonomize/releases/download/v${version}/eqonomize-${version}.tar.gz"
-checksum=d5fcb65659c8184d9d97588b044468960ed1355b99b6686eea8f3fb87f693685
+checksum=035187648943dcf239c4fce5ae628e9a020b15eb4839052c7c044a0390080444

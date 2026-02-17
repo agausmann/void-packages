@@ -1,17 +1,17 @@
 # Template file for 'jadx'
 pkgname=jadx
-version=1.4.7
+version=1.5.3
 revision=1
-hostmakedepends="openjdk8 gradle"
+hostmakedepends="openjdk21 gradle"
 short_desc="Decompiler for Dalvik bytecode"
 maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="Apache-2.0"
 homepage="https://github.com/skylot/jadx"
 distfiles="https://github.com/skylot/jadx/archive/v${version}.tar.gz"
-checksum=4afdd130f7ec60e88996b73d7c84c51b402cc36b4bf117bdc6289254027726cf
+checksum=db7434e881bdebe4b7eae60805ce9d92cde5beeaf07b7bf14239621cb45a3047
 
 do_build() {
-	gradle copyArtifacts
+	gradle --no-daemon copyArtifacts
 }
 
 do_install() {
@@ -20,4 +20,11 @@ do_install() {
 	vmkdir usr/bin
 	ln -s /usr/share/jadx/bin/jadx ${DESTDIR}/usr/bin/jadx
 	ln -s /usr/share/jadx/bin/jadx-gui ${DESTDIR}/usr/bin/jadx-gui
+
+	vinstall contrib/jadx-gui.desktop 644 usr/share/applications
+	vinstall jadx-gui/src/main/resources/logos/jadx-logo.svg 644 usr/share/icons/hicolor/scalable/apps jadx.svg
+
+	for size in 16 32 48; do
+		vinstall jadx-gui/src/main/resources/logos/jadx-logo-${size}px.png 644 usr/share/icons/hicolor/${size}x${size}/apps jadx.png
+	done
 }

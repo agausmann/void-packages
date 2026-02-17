@@ -1,18 +1,18 @@
 # Template file for 'qtutilities'
 pkgname=qtutilities
-version=6.13.2
+version=6.19.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_SHARED_LIBS:BOOL=ON"
-hostmakedepends="qt5-qmake qt5-host-tools"
-makedepends="qt5-tools-devel cpp-utilities-devel"
+configure_args="-DBUILD_SHARED_LIBS=ON -DQT_PACKAGE_PREFIX=Qt6"
+hostmakedepends="qt6-base qt6-tools"
+makedepends="qt6-base-devel cpp-utilities-devel"
 checkdepends="xvfb-run"
 short_desc="Qt helper routines, including dialogs, widgets, and models"
 maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/Martchus/qtutilities"
-distfiles="https://github.com/Martchus/${pkgname}/archive/v${version}.tar.gz"
-checksum=5677fe0a76065d7adb01e39d75598834a517fcff4b4c655c555f12da5e121bae
+distfiles="https://github.com/Martchus/qtutilities/archive/v${version}.tar.gz"
+checksum=5f6f7f4c5f49416fb6826be712dadcce7a7cf3673a5db403f75f65497efc737a
 
 pre_check() {
 	ninja -C build tests

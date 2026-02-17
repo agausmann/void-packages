@@ -1,6 +1,6 @@
 # Template file for 'cmake'
 pkgname=cmake
-version=3.27.6
+version=4.2.2
 revision=1
 build_style=cmake
 configure_args="-DCMAKE_DOC_DIR=/share/doc/cmake
@@ -10,22 +10,25 @@ configure_args="-DCMAKE_DOC_DIR=/share/doc/cmake
  -DCMAKE_USE_SYSTEM_LIBRARIES=ON -DKWSYS_LFS_WORKS=1"
 hostmakedepends="gcc-fortran python3-Sphinx qt6-base qt6-tools"
 makedepends="expat-devel libarchive-devel libcurl-devel libuv-devel cppdap-devel
- ncurses-devel rhash-devel jsoncpp-devel qt6-base-devel qt6-tools-devel"
+ ncurses-devel rhash-devel jsoncpp-devel qt6-base-devel"
 checkdepends="pax pkg-config git"
 short_desc="Cross-platform, open-source build system"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="BSD-3-Clause, ICU"
 homepage="https://www.cmake.org"
 distfiles="https://www.cmake.org/files/v${version%.*}/${pkgname}-${version}.tar.gz"
-checksum=ef3056df528569e0e8956f6cf38806879347ac6de6a4ff7e4105dc4578732cfb
+checksum=bbda94dd31636e89eb1cc18f8355f6b01d9193d7676549fba282057e8b730f58
 
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
 	configure_args+=" -DCMake_NO_SELF_BACKTRACE=1"
+elif [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
+	CFLAGS=" -D_TIME_BITS=64 -D_FILE_OFFSET_BITS=64"
+	CXXFLAGS=" -D_TIME_BITS=64 -D_FILE_OFFSET_BITS=64"
 fi
 
 do_check() {
 	cd build
-	./bin/ctest
+	./bin/ctest -E RunCMake.Tutorial
 }
 
 post_install() {
@@ -37,7 +40,7 @@ post_install() {
 	vlicense fld.license
 	sed -e '/\$FreeBSD\$/q' Utilities/cmelf/elf_common.h >elf.license
 	vlicense elf.license
-	vlicense Copyright.txt
+	vlicense LICENSE.rst
 }
 
 cmake-gui_package() {

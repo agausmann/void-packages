@@ -1,12 +1,12 @@
 # Template file for 'zfs'
 pkgname=zfs
-version=2.2.0
+version=2.4.0
 revision=1
 build_style=gnu-configure
 configure_args="--with-config=user --with-mounthelperdir=/usr/bin
  --with-udevdir=/usr/lib/udev --with-udevruledir=/usr/lib/udev/rules.d
  --with-dracutdir=/usr/lib/dracut --with-tirpc"
-hostmakedepends="dracut libtool pkg-config python3 automake"
+hostmakedepends="dracut libtool pkg-config python3 automake tar"
 makedepends="pam-devel zlib-devel libuuid-devel libblkid-devel libtirpc-devel attr-devel"
 depends="dkms>=2.2.0.3_9 perl python3 xbps-triggers>=0.121_1
  libzfs>=${version}_${revision}"
@@ -16,7 +16,7 @@ maintainer="Toyam Cox <Vaelatern@voidlinux.org>"
 license="CDDL-1.0"
 homepage="https://openzfs.github.io/openzfs-docs/"
 distfiles="https://github.com/openzfs/zfs/releases/download/zfs-${version}/zfs-${version}.tar.gz"
-checksum=42035fd059faa25a09cd511b24a57b8ad1285cb69127f2a0043b98562c5ec690
+checksum=7bdf13de0a71d95554c0e3e47d5e8f50786c30d4f4b63b7c593b1d11af75c9ee
 # dkms must be before initramfs-regenerate to build modules before images
 triggers="dkms initramfs-regenerate"
 dkms_modules="zfs ${version}"

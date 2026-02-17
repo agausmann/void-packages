@@ -1,15 +1,16 @@
 # Template file for 'polkit-kde-agent'
 pkgname=polkit-kde-agent
-version=5.27.9
+version=6.5.5
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
-hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools gettext kcoreaddons"
-makedepends="kcrash-devel kdbusaddons-devel kiconthemes-devel kdoctools-devel
- polkit-qt5-devel"
+hostmakedepends="extra-cmake-modules qt6-base qt6-tools gettext"
+makedepends="kf6-kcrash-devel kf6-kdbusaddons-devel kf6-kiconthemes-devel
+ qt6-declarative-devel qt6-base-devel kf6-ki18n-devel kf6-kcoreaddons-devel
+ kf6-kcrash-devel
+ kf6-kwindowsystem-devel polkit-qt6-devel kf6-knotifications-devel"
 short_desc="KDE PolKit auth agent"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://commits.kde.org/polkit-kde-agent"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-1-${version}.tar.xz"
-checksum=03b8c12f1dde30b1bf7ee61e55a269b5fd542a32a1d1b6b8bc5d080bdf400892
+checksum=e75d827e5b54c0ea05e7a01ae90b3d3d839dff5fcbe0903abf0527dcae193d4a

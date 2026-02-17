@@ -1,15 +1,16 @@
 # Template file for 'pulseaudio'
 pkgname=pulseaudio
 version=16.1
-revision=1
+revision=2
 build_style=meson
 configure_args="-Djack=enabled -Dlirc=disabled -Dhal-compat=false -Dorc=enabled
  -Dgtk=disabled -Dsystemd=disabled -Dwebrtc-aec=enabled
  -Dgsettings=enabled -Dbluez5=enabled
  -Dbluez5-ofono-headset=false -Dbluez5-native-headset=true
  -Delogind=enabled -Dudevrulesdir=/usr/lib/udev/rules.d
- -Dbashcompletiondir=/usr/share/bash-completion/completions"
-hostmakedepends="cmake m4 gettext libtool orc-devel perl-XML-Parser pkg-config
+ -Dbashcompletiondir=/usr/share/bash-completion/completions
+ -Dcpp_std=c++17"
+hostmakedepends="m4 gettext libtool orc-devel perl-XML-Parser pkg-config
  doxygen"
 makedepends="$(vopt_if avahi avahi-libs-devel) eudev-libudev-devel fftw-devel jack-devel
  libSM-devel libXtst-devel libasyncns-devel libbluetooth-devel
@@ -43,6 +44,14 @@ fi
 case "$XBPS_TARGET_MACHINE" in
 	arm*) configure_args+=" -Db_lto=false"
 esac
+
+post_patch() {
+	if [ "$XBPS_TARGET_LIBC" = musl ]; then
+		# Configure detects presence of open64 due to musl providing aliases for them in the linker, this is not correct.
+		# This was fixed in musl 1.2.x, but we are currently using 1.1.x
+		vsed -e "s/'open64',//g" -i meson.build
+	fi
+}
 
 post_install() {
 	rm ${DESTDIR}/etc/dbus-1/system.d/pulseaudio-system.conf

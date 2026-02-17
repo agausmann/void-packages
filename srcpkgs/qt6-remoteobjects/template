@@ -1,24 +1,27 @@
 # Template file for 'qt6-remoteobjects'
 pkgname=qt6-remoteobjects
-version=6.6.0
+version=6.10.2
 revision=1
 build_style=cmake
 hostmakedepends="perl qt6-declarative-host-tools pkg-config"
-makedepends="qt6-declarative-devel qt6-connectivity-devel"
+makedepends="qt6-declarative-private-devel qt6-connectivity-devel
+ qt6-base-private-devel qt6-websockets-devel"
 # Not a strict dependency, but it's 2022, everyone should use TLS
 depends="qt6-plugin-tls-openssl"
 checkdepends="$depends"
 short_desc="Cross-platform application and UI framework - Remote Objects"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
-license="(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND GPL-3.0-only with Qt-GPL-exception-1.0"
+license="(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND GPL-3.0-only WITH Qt-GPL-exception-1.0"
 homepage="https://qt.io/"
 distfiles="http://download.qt.io/official_releases/qt/${version%.*}/${version}/submodules/qtremoteobjects-everywhere-src-${version}.tar.xz"
-checksum=261194e35bb9420225f095c58a5a549686797a3d2b7ea6f0d582d7d681f1f76b
+checksum=bc683f044fe74dcf06c2b47f31fff2d967b5ac81896620108697dcc942eb65cd
 
 if [ "$CROSS_BUILD" ]; then
-	hostmakedepends+=" qt6-remoteobjects"
+	hostmakedepends+=" qt6-remoteobjects-tools"
 	configure_args="-DQT_FORCE_BUILD_TOOLS=true"
 fi
+
+subpackages="qt6-remoteobjects-tools qt6-remoteobjects-devel"
 
 pre_check() {
 	export QML2_IMPORT_PATH="$wrksrc/build/lib${XBPS_TARGET_WORDSIZE}/qt6/qml"
@@ -28,8 +31,17 @@ post_install() {
 	rm -rf ${DESTDIR}/usr/tests
 }
 
+qt6-remoteobjects-tools_package() {
+	short_desc+=" - tools"
+	pkg_install() {
+		vmove usr/lib/qt6/libexec
+		vmove usr/lib/cmake/Qt6RemoteObjectsTools
+	}
+}
+
 qt6-remoteobjects-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}
+	 qt6-remoteobjects-tools>=${version}_${revision}
 	 qt6-declarative-devel>=${version}_1"
 	short_desc+=" - development files"
 	pkg_install() {

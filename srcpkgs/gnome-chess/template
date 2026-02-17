@@ -1,6 +1,6 @@
 # Template file for 'gnome-chess'
 pkgname=gnome-chess
-version=43.2
+version=49.2
 revision=1
 build_style=meson
 hostmakedepends="gettext pkg-config vala glib-devel itstool librsvg-devel
@@ -10,7 +10,7 @@ depends="gnuchess"
 short_desc="GNOME chess user interface"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
-homepage="https://wiki.gnome.org/Apps/Chess"
-changelog="https://gitlab.gnome.org/GNOME/gnome-chess/-/raw/master/NEWS"
+homepage="https://gitlab.gnome.org/GNOME/gnome-chess"
+changelog="https://gitlab.gnome.org/GNOME/gnome-chess/-/raw/main/NEWS"
 distfiles="${GNOME_SITE}/gnome-chess/${version%.*}/gnome-chess-${version}.tar.xz"
-checksum=348508f8f6e7451c07344ffa7a09a990cf1d2883bccf533409dbe029268d49f2
+checksum=c40a0004a473fe749ac2fa4fad98db64118d18f9fd9ac02eecfa364f03dbe9b0

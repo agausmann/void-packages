@@ -1,6 +1,6 @@
 # Template file for 'openbsd-netcat'
 pkgname=openbsd-netcat
-version=1.226
+version=1.234
 revision=1
 create_wrksrc=yes
 hostmakedepends="pkg-config"
@@ -12,8 +12,8 @@ homepage="http://packages.debian.org/sid/netcat-openbsd"
 distfiles="
  ${DEBIAN_SITE}/main/n/netcat-openbsd/netcat-openbsd_${version%p*}.orig.tar.gz
  ${DEBIAN_SITE}/main/n/netcat-openbsd/netcat-openbsd_${version}-1.debian.tar.xz"
-checksum="91c34c3b9ebc18b84e42514ea0328274229afd408853f7e22af897652ee6bfe5
- c0f0afd3eda87e990c332b25f67c4d6599aa24ddbadf0cfc7be170227782b6f8"
+checksum="121c18d9441ec42b92a9b566468a596bbcf673894db8b12d892947552a8e3bbe
+ 008892553774e23a62f4088cdcbd4428f7b764a6cdadfcb35d1793224a697996"
 
 alternatives="
  nc:nc:/usr/bin/openbsd-nc

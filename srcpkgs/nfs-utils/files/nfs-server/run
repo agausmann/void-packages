@@ -1,9 +1,6 @@
 #!/bin/sh
 exec 2>&1
 
-# Make sure the statd service is running.
-sv check statd >/dev/null || exit 1
-
 # This was probably only used correctly to set PROCESSES
 [ -r /etc/conf.d/nfs-server.conf ] && . /etc/conf.d/nfs-server.conf
 

@@ -1,32 +1,19 @@
 # Template file for 'elixir'
 pkgname=elixir
-version=1.15.7
+version=1.19.5
 revision=1
 build_style=gnu-makefile
-make_build_args="LIBDIR=lib${XBPS_TARGET_WORDSIZE}"
-make_check_args="LIBDIR=lib${XBPS_TARGET_WORDSIZE}"
-make_install_args="LIBDIR=lib${XBPS_TARGET_WORDSIZE}"
-# make_check_target="test"
 make_check_target="test_erlang test_elixir"
 hostmakedepends="erlang"
-depends="erlang>=24"
+depends="erlang>=26"
 checkdepends="git"
 short_desc="Functional, concurrent, general-purpose programming language"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="Apache-2.0"
-homepage="http://elixir-lang.org/"
+homepage="https://elixir-lang.org/"
 changelog="https://raw.githubusercontent.com/elixir-lang/elixir/v${version%.*}/CHANGELOG.md"
 distfiles="https://github.com/elixir-lang/elixir/archive/v${version}.tar.gz"
-checksum=78bde2786b395515ae1eaa7d26faa7edfdd6632bfcfcd75bccb6341a18e8798f
-
-post_patch() {
-	# XXX: find a better solution
-	# Assertion with == failed
-	# code:  assert root_dir == :code.root_dir() |> to_string()
-	# left:  "/usr/lib/erlang"
-	# right: "/usr/lib64/erlang"
-	vsed -e '/assert root_dir == :code\.root_dir()/d' -i lib/mix/test/mix/tasks/release_test.exs
-}
+checksum=10750b8bd74b10ac1e25afab6df03e3d86999890fa359b5f02aa81de18a78e36
 
 do_check() {
 	ERL_EPMD_PORT=5369 make ${make_check_target}

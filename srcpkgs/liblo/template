@@ -1,19 +1,26 @@
 # Template file for 'liblo'
 pkgname=liblo
-version=0.31
+version=0.34
 revision=1
 build_style=gnu-configure
-configure_args="--enable-ipv6"
+hostmakedepends="autoconf automake libtool doxygen"
 short_desc="Lightweight OSC implementation"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Rutpiv <roger_freitas@live.com>"
 license="LGPL-2.1-or-later"
-homepage="http://liblo.sourceforge.net/"
-distfiles="${SOURCEFORGE_SITE}/${pkgname}/${pkgname}-${version}.tar.gz"
-checksum=2b4f446e1220dcd624ecd8405248b08b7601e9a0d87a0b94730c2907dbccc750
-nopie=yes
+homepage="https://liblo.sourceforge.net/"
+distfiles="https://github.com/radarsat1/liblo/archive/${version}.tar.gz"
+checksum=e9a294c7613e1bec2abcf26f2010604643d605ed6852e16b51837400729fcbee
+
+disable_parallel_check=yes
 
 pre_configure() {
+	./autogen.sh --no-configure
 	vsed -i '/-Werror/d' configure
+}
+
+post_install() {
+	vmkdir usr/share/doc/${pkgname}
+	vcopy doc/html usr/share/doc/${pkgname}
 }
 
 liblo-devel_package() {
@@ -21,7 +28,14 @@ liblo-devel_package() {
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
-		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
+		vmove usr/lib/pkgconfig
+	}
+}
+
+liblo-doc_package() {
+	short_desc+=" - documentation"
+	pkg_install() {
+		vmove /usr/share/doc
 	}
 }

@@ -1,6 +1,6 @@
 # Template file for 'pidgin'
 pkgname=pidgin
-version=2.14.12
+version=2.14.14
 revision=1
 build_style=gnu-configure
 configure_args="--disable-schemas-install --disable-meanwhile
@@ -22,7 +22,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://pidgin.im/"
 distfiles="${SOURCEFORGE_SITE}/pidgin/pidgin-${version}.tar.bz2"
-checksum=2b05246be208605edbb93ae9edc079583d449e2a9710db6d348d17f59020a4b7
+checksum=0ffc9994def10260f98a55cd132deefa8dc4a9835451cc0e982747bd458e2356
 python_version=3
 lib32disabled=yes
 

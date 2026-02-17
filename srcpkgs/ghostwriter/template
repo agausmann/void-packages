@@ -1,29 +1,25 @@
 # Template file for 'ghostwriter'
 pkgname=ghostwriter
-version=23.08.2
+version=25.12.2
 revision=1
 build_style=cmake
-hostmakedepends="pkg-config extra-cmake-modules qt5-qmake qt5-host-tools
- kcoreaddons kdoctools"
-makedepends="qt5-multimedia-devel qt5-svg-devel qt5-tools-devel
- qt5-webengine-devel qt5-location-devel qt5-webchannel-devel
- qt5-declarative-devel sonnet-devel kcoreaddons-devel kxmlgui-devel
- kconfigwidgets-devel"
-depends="hicolor-icon-theme qt5-svg"
+hostmakedepends="pkg-config extra-cmake-modules qt6-base qt6-tools
+ kf6-kdoctools kf6-kconfig"
+makedepends="qt6-multimedia-devel qt6-svg-devel qt6-webengine-devel
+ qt6-location-devel qt6-webchannel-devel qt6-declarative-devel kf6-sonnet-devel
+ kf6-kdoctools-devel kf6-kconfig-devel
+ kf6-kcoreaddons-devel kf6-kxmlgui-devel kf6-kconfigwidgets-devel"
+depends="hicolor-icon-theme qt6-svg"
 short_desc="Distraction-free Markdown editor"
 maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="http://kde.github.io/ghostwriter"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=31b0380c6e36776cfb73d17aae2d7d2105dc3b163516a9541dcef99a3051b001
+checksum=365fdea7669152f224271ede68c7c50f5b220cce26e4310482fed7e8c420de95
 
-case "$XBPS_TARGET_MACHINE" in
-	armv5tel*) broken="qtwebengine not built for this platform";;
-	ppc|ppc-musl) broken="qtwebengine not built for this platform";;
-	*) if [ "$XBPS_WORDSIZE" != "$XBPS_TARGET_WORDSIZE" ]; then
-		broken="qtwebengine not built for this platform"
-	fi;;
-esac
+if [ "$XBPS_TARGET_WORDSIZE" = "32" ]; then
+	broken="qtwebengine not built for this platform"
+fi
 
 post_install() {
 	vdoc "${FILESDIR}/README.voidlinux"

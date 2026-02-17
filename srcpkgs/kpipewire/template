@@ -1,22 +1,31 @@
 # Template file for 'kpipewire'
 pkgname=kpipewire
-version=5.27.9
+version=6.5.5
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules plasma-wayland-protocols gettext
- qt5-qmake qt5-host-tools pkg-config wayland-devel kcoreaddons
- kwayland-devel"
-makedepends="ffmpeg-devel kcoreaddons-devel kwayland-devel ki18n-devel
- libepoxy-devel pipewire-devel"
+configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml"
+hostmakedepends="extra-cmake-modules gettext qt6-base qt6-tools pkg-config
+ pipewire wayland-devel qt6-declarative-host-tools"
+makedepends="ffmpeg6-devel kf6-kcoreaddons-devel kf6-kwayland-devel
+ kf6-ki18n-devel libva-devel libepoxy-devel pipewire-devel
+ plasma-wayland-protocols
+ wayland-devel qt6-declarative-devel qt6-base-private-devel"
+depends="pipewire"
 short_desc="Components relating to Flatpak 'pipewire' use in Plasma"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-or-later"
 homepage="https://invent.kde.org/plasma/kpipewire"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=1b7b4f116c208f6ef5279efe99c5715e3ccea98efb7a9ee4565947b45c15d020
+checksum=4aacdb440cb09df418228aafce12d2565a894b3a8b98f34f05aa5a6f1ebce354
+
+do_check() {
+	cd build
+	ctest -E "mediamonitortest"
+}
 
 kpipewire-devel_package() {
-	depends="${sourcepkg}>=${version}_${revision}"
+	depends="${sourcepkg}>=${version}_${revision}
+	 qt6-base-devel pipewire-devel"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include

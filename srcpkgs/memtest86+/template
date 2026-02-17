@@ -1,19 +1,25 @@
 # Template file for 'memtest86+'
 pkgname=memtest86+
-version=6.20
+version=8.00
 revision=1
 archs="i686* x86_64*"
-short_desc="Advanced Memory Diagnostic Tool - upstream binary"
+build_style="gnu-makefile"
+make_use_env=yes # we DON'T want our cflags to be used
+short_desc="Advanced Memory Diagnostic Tool"
 maintainer="classabbyamp <void@placeviolette.net>"
 license="GPL-2.0-or-later"
 homepage="http://www.memtest.org"
-distfiles="https://www.memtest.org/download/v${version}/mt86plus_${version}.binaries.zip"
-checksum=ccabd43063b65e53be4fddb08de0cc6bedc94b4ab44706855e4145e17fa52c72
+distfiles="https://github.com/memtest86plus/memtest86plus/archive/refs/tags/v${version}.tar.gz"
+checksum=ec7edde55f60d12d9e7bc1cc560837cdbaa14cf00020cebb4a1d7fe4afeddb4a
 nostrip=yes
-noverifyrdeps=yes
+
+case "$XBPS_TARGET_MACHINE" in
+	x86_64*) build_wrksrc="build/x86_64" ;;
+	i686*) build_wrksrc="build/i586" ;;
+esac
 
 do_install() {
-	vinstall "memtest${XBPS_TARGET_WORDSIZE}.bin" 755 boot memtest.bin
-	vinstall "memtest${XBPS_TARGET_WORDSIZE}.efi" 755 boot memtest.efi
+	vinstall mt86plus 755 boot/memtest86+ memtest.bin
+	vinstall mt86plus 755 boot/memtest86+ memtest.efi
 	vinstall "${FILESDIR}/20_memtest86+" 755 etc/grub.d
 }

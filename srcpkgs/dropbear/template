@@ -1,6 +1,6 @@
 # Template file for 'dropbear'
 pkgname=dropbear
-version=2022.83
+version=2025.89
 revision=1
 build_style=gnu-configure
 configure_args="--enable-zlib --disable-bundled-libtom"
@@ -12,14 +12,20 @@ license="MIT"
 homepage="https://matt.ucc.asn.au/dropbear/dropbear.html"
 changelog="https://matt.ucc.asn.au/dropbear/CHANGES"
 distfiles="https://matt.ucc.asn.au/${pkgname}/releases/${pkgname}-${version}.tar.bz2"
-checksum=bc5a121ffbc94b5171ad5ebe01be42746d50aa797c9549a4639894a16749443b
+checksum=0d1f7ca711cfc336dc8a85e672cab9cfd8223a02fe2da0a4a7aeb58c9e113634
 make_dirs="/etc/dropbear 0755 root root"
 
-# These tests don't work from within xbps-src
-# and probably should not be run from there
+if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
+	makedepends+=" libxcrypt-devel"
+fi
+
 pre_check() {
+	# These tests don't work from within xbps-src
+	# and probably should not be run from there
 	rm test/test_aslr.py
 	rm test/test_channels.py
+	# Required asyncssh not packaged for Void Linux
+	rm test/test_concurrent.py
 }
 
 post_install() {

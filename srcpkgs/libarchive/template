@@ -1,6 +1,6 @@
 # Template file for 'libarchive'
 pkgname=libarchive
-version=3.7.2
+version=3.8.5
 revision=1
 bootstrap=yes
 build_style=gnu-configure
@@ -13,12 +13,12 @@ makedepends="zlib-devel bzip2-devel liblzma-devel
  $(vopt_if acl acl-devel) $(vopt_if expat expat-devel) $(vopt_if zstd libzstd-devel)
  $(vopt_if lzo lzo-devel) $(vopt_if lz4 liblz4-devel) $(vopt_if ssl openssl-devel)"
 short_desc="Library to read/write several different streaming archive formats"
-maintainer="triallax <triallax@tutanota.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
-homepage="http://www.libarchive.org/"
+homepage="https://www.libarchive.org/"
 changelog="https://github.com/libarchive/libarchive/releases"
 distfiles="https://github.com/libarchive/libarchive/releases/download/v${version}/libarchive-${version}.tar.xz"
-checksum=04357661e6717b6941682cde02ad741ae4819c67a260593dfb2431861b251acb
+checksum=d68068e74beee3a0ec0dd04aee9037d5757fcc651591a6dcf1b6d542fb15a703
 
 build_options="acl expat lzo lz4 ssl zstd"
 build_options_default="acl ssl lz4 zstd"
@@ -57,7 +57,7 @@ bsdtar_package() {
 
 bsdunzip_package() {
 	reverts="20160115_1 20160115_2"
-	build_style="meta"
+	metapackage=yes
 	short_desc="BSD utilities using libarchive (transitional dummy package)"
 	depends="bsdtar>=${version}_${revision}"
 }

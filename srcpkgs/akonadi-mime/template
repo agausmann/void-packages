@@ -1,21 +1,28 @@
 # Template file for 'akonadi-mime'
 pkgname=akonadi-mime
-version=23.08.2
+version=25.12.2
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules kcoreaddons kdoctools python3
- gettext"
-makedepends="kmime-devel akonadi5-devel"
+configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+ -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
+ -DKDE_INSTALL_QMLDIR=lib/qt6/qml
+ -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
+hostmakedepends="extra-cmake-modules kf6-kcoreaddons kf6-kdoctools python3
+ shared-mime-info libxslt
+ gettext qt6-base qt6-declarative-host-tools qt6-tools kf6-kconfig"
+makedepends="qt6-declarative-devel
+ kf6-kio-devel
+ kf6-ki18n-devel
+ kf6-kxmlgui-devel
+ kf6-kitemmodels-devel
+ kmime6-devel kf6-akonadi-devel kf6-kconfig-devel kf6-kdoctools-devel
+ kf6-kcoreaddons-devel"
 short_desc="Libraries and daemons to implement basic email handling"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later, GPL-2.0-or-later"
 homepage="https://community.kde.org/KDE_PIM/Akonadi"
 distfiles="${KDE_SITE}/release-service/${version}/src/akonadi-mime-${version}.tar.xz"
-checksum=d1ebf37ebcb3cbedb8e400f80d8c3af7772df28a4f348a7877f9016f01ac1728
-
-if [ "$CROSS_BUILD" ];then
-	hostmakedepends+=" qt5-qmake qt5-host-tools kconfig"
-fi
+checksum=ad7456cccdad965bc7586136f3f1220b83af0746b305a1880beb5714cbf6a389
 
 do_check() {
 	cd build
@@ -27,7 +34,6 @@ akonadi-mime-devel_package() {
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
-		vmove usr/lib/qt5/mkspecs
 		vmove usr/lib/cmake
 		vmove "usr/lib/*.so"
 	}

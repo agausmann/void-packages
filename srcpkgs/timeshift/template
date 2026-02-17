@@ -1,9 +1,9 @@
 # Template file for 'timeshift'
 pkgname=timeshift
-version=23.06.2
+version=25.07.7
 revision=1
 build_style=meson
-hostmakedepends="gettext pkg-config vala help2man"
+hostmakedepends="gettext pkg-config vala"
 makedepends="libgee-devel json-glib-devel vte3-devel libgirepository-devel
  xapps-devel libxkbfile-devel"
 depends="rsync psmisc xhost"
@@ -13,11 +13,13 @@ license="GPL-3.0-only"
 homepage="https://github.com/linuxmint/timeshift"
 changelog="https://raw.githubusercontent.com/linuxmint/timeshift/master/debian/changelog"
 distfiles="https://github.com/linuxmint/timeshift/archive/${version}/timeshift-${version}.tar.gz"
-checksum=a88c947a70e850fcac11e34484bd9074ec48302998f9d734f579387b5b88eeaf
+checksum=c4de584ac4ab29d17edae35d372fc64fd3a92e6d15efb5eb8ea458b315c6d52f
+CFLAGS=-D_GNU_SOURCE=1
 
 if [ "$CROSS_BUILD" ]; then
-	hostmakedepends=${hostmakedepends%help2man}
 	configure_args="-Dman=false"
+else
+	hostmakedepends+=" help2man"
 fi
 
 # Remove hard-dep on crontab, leave up to user to decide

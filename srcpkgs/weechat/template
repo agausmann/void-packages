@@ -1,14 +1,14 @@
 # Template file for 'weechat'
 pkgname=weechat
-version=4.1.1
-revision=1
+version=4.8.1
+revision=3
 build_style=cmake
 configure_args="-DENABLE_MAN=ON -DENABLE_PERL=ON
  -DENABLE_LUA=ON -DENABLE_RUBY=ON -DENABLE_SPELL=ON
  -DENABLE_GUILE=OFF -DENABLE_PHP=OFF -DENABLE_JAVASCRIPT=OFF"
 hostmakedepends="gettext libgcrypt-devel pkg-config python3
  ruby ruby-asciidoctor tcl-devel"
-makedepends="aspell-devel gnutls-devel libcurl-devel libgcrypt-devel
+makedepends="aspell-devel cJSON-devel gnutls-devel libcurl-devel libgcrypt-devel
  libzstd-devel lua53-devel ncurses-devel perl python3-devel
  ruby-devel tcl-devel"
 depends="ca-certificates"
@@ -16,9 +16,9 @@ short_desc="Fast, light and extensible IRC client"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-3.0-or-later"
 homepage="https://www.weechat.org"
-changelog="https://raw.githubusercontent.com/weechat/weechat/master/ChangeLog.adoc"
+changelog="https://raw.githubusercontent.com/weechat/weechat/master/CHANGELOG.md"
 distfiles="https://www.weechat.org/files/src/weechat-${version}.tar.xz"
-checksum=774238614d8e63e4d3d5a73a6cb640ec76fe06cc982b87a8c923651579277675
+checksum=e7ac1fbcc71458ed647aada8747990905cb5bfb93fd8ccccbc2a969673a4285a
 lib32disabled=yes
 
 subpackages="weechat-aspell weechat-devel weechat-ruby weechat-python weechat-tcl weechat-lua weechat-perl"
@@ -32,6 +32,9 @@ if [ "$CROSS_BUILD" ]; then
 	 -DPERL_CFLAGS=-I$_perlpath
 	 -DPERL_LFLAGS=-L$_perlpath"
 fi
+pre_configure() {
+	configure_args+=" -DRuby_CONFIG_INCLUDE_DIR=${XBPS_CROSS_BASE}/$(pkg-config --variable=rubyarchhdrdir ruby-3.4)"
+}
 
 weechat-aspell_package() {
 	lib32disabled=yes

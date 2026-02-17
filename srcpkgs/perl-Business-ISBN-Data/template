@@ -1,6 +1,6 @@
 # Template file for 'perl-Business-ISBN-Data'
 pkgname=perl-Business-ISBN-Data
-version=20210112.006
+version=20251009.001
 revision=1
 build_style=perl-module
 hostmakedepends="perl"
@@ -11,4 +11,4 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://metacpan.org/release/Business-ISBN-Data/"
 distfiles="${CPAN_SITE}/Business/${pkgname/perl-/}-${version}.tar.gz"
-checksum=98c2cfb266b5fdd016989abaa471d9dd4c1d593c508a6f01f66d184d5fee8bae
+checksum=4ec7e0bd8da9602cf103be15c377c02e5fae72ceb669663125efad7d5c9a0e61

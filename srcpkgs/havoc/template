@@ -1,6 +1,6 @@
 # Template file for 'havoc'
 pkgname=havoc
-version=0.5.0
+version=0.7.0
 revision=1
 build_style=gnu-makefile
 hostmakedepends="wayland-devel pkg-config"
@@ -10,7 +10,7 @@ maintainer="ii8 <murray.calavera@protonmail.com>"
 license="Public Domain, MIT"
 homepage="https://github.com/ii8/havoc"
 distfiles="https://github.com/ii8/havoc/archive/refs/tags/${version}.tar.gz"
-checksum=3b0d37b13e3ca21f5e22f1e62a32fe736119cd5c601307c4000bed5fee179f77
+checksum=b4f819bfc3b0f8ea967018948dbf3a71f174a02886d00ee16121739fcd140d6f
 
 post_install() {
 	vlicense LICENSE

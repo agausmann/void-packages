@@ -1,24 +1,29 @@
 # Template file for 'libportal'
 pkgname=libportal
-version=0.6
-revision=1
+version=0.9.1
+revision=4
 build_style=meson
-configure_args="$(vopt_bool gtk_doc docs) $(vopt_bool gir vapi) -Dbackends=gtk3,gtk4"
-hostmakedepends="pkg-config glib-devel gobject-introspection $(vopt_if gir vala)
+build_helper="gir"
+configure_args="$(vopt_bool gtk_doc docs) $(vopt_bool gir vapi)
+ -Dbackend-gtk3=enabled -Dbackend-gtk4=enabled -Dbackend-qt6=enabled"
+hostmakedepends="pkgconf glib-devel gobject-introspection $(vopt_if gir vala)
  $(vopt_if gtk_doc gi-docgen)"
-makedepends="glib-devel gobject-introspection gtk+3-devel gtk4-devel"
+makedepends="glib-devel gobject-introspection gtk+3-devel gtk4-devel
+ qt6-base-devel qt6-base-private-devel"
+checkdepends="python3-dbusmock python3-pytest xvfb-run"
 short_desc="Flatpak portal library"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.0-or-later"
 homepage="https://github.com/flatpak/libportal"
 distfiles="https://github.com/flatpak/${pkgname}/releases/download/${version}/${pkgname}-${version}.tar.xz"
-checksum=88a12c3ba71bc31acff7238c280de697d609cebc50830c3766776ec35abc6566
+checksum=de801ee349ed3c255a9af3c01b1a401fab5b3fc1c35eb2fd7dfb35d4b8194d7f
+make_check_pre="xvfb-run"
 
 build_options="gir gtk_doc"
 build_options_default="gir gtk_doc"
 
-if [ -n "$CROSS_BUILD" ]; then
-	hostmakedepends+=" qemu-user-static prelink-cross"
+if [ "$CROSS_BUILD" ]; then
+	configure_args+=" -Dtests=false"
 fi
 
 libportal-devel_package() {
@@ -85,5 +90,24 @@ libportal-gtk4-devel_package() {
 			vmove usr/share/gir-1.0/XdpGtk4*
 			vmove "usr/share/vala/vapi/libportal-gtk4*"
 		fi
+	}
+}
+
+libportal-qt6_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - Qt6"
+	pkg_install() {
+		vmove "usr/lib/libportal-qt6.so.*"
+	}
+}
+
+libportal-qt6-devel_package() {
+	depends="libportal-devel>=${version}_${revision}
+	 libportal-qt6>=${version}_${revision} qt6-base-devel"
+	short_desc+=" - Qt6 - development files"
+	pkg_install() {
+		vmove usr/include/libportal-qt6
+		vmove "usr/lib/libportal-qt6.so"
+		vmove usr/lib/pkgconfig/libportal-qt6.pc
 	}
 }

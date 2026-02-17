@@ -1,6 +1,6 @@
 # Template file for 'timewarrior'
 pkgname=timewarrior
-version=1.6.0
+version=1.8.0
 revision=1
 build_style=cmake
 hostmakedepends="ruby-asciidoctor"
@@ -11,12 +11,13 @@ license="MIT"
 homepage="https://timewarrior.net"
 changelog="https://raw.githubusercontent.com/GothenburgBitFactory/timewarrior/develop/ChangeLog"
 distfiles="https://github.com/GothenburgBitFactory/timewarrior/releases/download/v${version}/timew-${version}.tar.gz"
-checksum=cd1aa610ed50558bb2cf141022fa7b41523091ac3ae5fbb9c2d459cfe1afc782
+checksum=1ea54302dcefa4aa658f89b6b825f0e8b49c04f15cf153a2e7d8bce5525920b4
 python_version=3
 
 post_install() {
 	vlicense LICENSE
 
+	vcompletion completion/timew.zsh zsh timew
 	vcompletion completion/timew-completion.bash bash timew
 	vcompletion completion/timew.fish fish timew
 }

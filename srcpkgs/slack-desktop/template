@@ -1,15 +1,16 @@
 # Template file for 'slack-desktop'
 pkgname=slack-desktop
-version=4.34.121
+version=4.47.69
 revision=1
 archs="x86_64"
 depends="xdg-utils"
 short_desc="Messaging app for teams"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Rodrigo Oliveira <mdkcore@qtrnn.io>"
 license="custom:Proprietary"
 homepage="https://slack.com/"
-distfiles="https://downloads.slack-edge.com/releases/linux/${version}/prod/x64/${pkgname}-${version}-amd64.deb"
-checksum=e5ef86c154e7859e3ff8dc9e20dff7e689db83a1aa4cda17f815de73754b2984
+changelog="https://slack.com/release-notes/linux"
+distfiles="https://downloads.slack-edge.com/desktop-releases/linux/x64/${version}/${pkgname}-${version}-amd64.deb"
+checksum=7bd5e3079ea968e765dcbb8872941d98f3ae1b953a3ebd947c98ef34e9906ba5
 restricted=yes
 repository="nonfree"
 nopie=yes

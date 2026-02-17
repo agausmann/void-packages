@@ -1,6 +1,6 @@
 # Template file for 'knot'
 pkgname=knot
-version=3.3.2
+version=3.5.3
 revision=1
 build_style=gnu-configure
 configure_args="
@@ -17,16 +17,20 @@ makedepends="gnutls-devel lmdb-devel libedit-devel liburcu-devel
 checkdepends="softhsm"
 short_desc="High-performance authoritative-only DNS server"
 maintainer="Duncaen <duncaen@voidlinux.org>"
-license="GPL-3.0-or-later"
+license="GPL-2.0-or-later"
 homepage="https://www.knot-dns.cz/"
-changelog="https://github.com/CZ-NIC/knot/raw/${version%*.*}/NEWS"
+changelog="https://gitlab.nic.cz/knot/knot-dns/-/raw/${version%*.*}/NEWS"
 distfiles="https://secure.nic.cz/files/knot-dns/knot-${version}.tar.xz"
-checksum=0d65d4b59f5df69b78c6295ade0a2ea7931831de7ef5eeee3e00f8a20af679e4
+checksum=e003ad1eef229c4e65a6cac876ee773e25a06177ecdc83795a26617a6eebe471
 
 system_accounts="_knot"
 _knot_homedir="/var/lib/knot"
 
 make_dirs="/var/lib/knot 0755 _knot _knot"
+
+case "$XBPS_TARGET_MACHINE" in
+armv6*) broken="ATOMIC_CHAR16_T_LOCK_FREE == 2: insufficient atomics" ;;
+esac
 
 post_install() {
 	vsed -i -e 's/\(user: \)knot:knot/\1 _knot:_knot/' samples/knot.sample.conf

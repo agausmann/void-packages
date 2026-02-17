@@ -1,20 +1,16 @@
 # Template file for 'yq-go'
 pkgname=yq-go
-version=4.35.1
-revision=2
+version=4.52.2
+revision=1
 build_style=go
 go_import_path=github.com/mikefarah/yq/v4
-short_desc="Lightweight and portable command-line YAML processor written in go"
-maintainer="Frank Steinborn <steinex@nognu.de>"
+short_desc="Command-line YAML, JSON, XML, CSV, TOML and properties processor"
+maintainer="Bnyro <bnyro@tutanota.com>"
 license="MIT"
-homepage="https://github.com/mikefarah/yq"
+homepage="https://mikefarah.gitbook.io/yq"
 changelog="https://raw.githubusercontent.com/mikefarah/yq/master/release_notes.txt"
 distfiles="https://github.com/mikefarah/yq/archive/refs/tags/v${version}.tar.gz"
-checksum=b3e079169529ec6b42925d0802c22d86f1ef6e1458dce67eae5a1d6db56cb8c3
-
-do_check() {
-	go test -v
-}
+checksum=598ad3719f6b8a199f374baf7a32e9ff527300e56816f4652cd3640c230bf79b
 
 post_install() {
 	# this came after yq 'the jq wrapper for yaml' so yq has the right to

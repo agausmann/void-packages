@@ -1,18 +1,18 @@
 # Template file for 'breeze-icons'
 pkgname=breeze-icons
-version=5.111.0
+version=6.21.0
 revision=1
 build_style=cmake
-hostmakedepends="kcoreaddons extra-cmake-modules qt5-host-tools qt5-devel
- python3-lxml libxml2"
-makedepends="qt5-devel"
+build_helper=qemu
+hostmakedepends="extra-cmake-modules qt6-base qt6-tools python3-lxml libxml2"
+makedepends="qt6-base-devel"
 checkdepends="fdupes"
 short_desc="Breeze icon theme"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-3.0-or-later"
 homepage="https://community.kde.org/Frameworks"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=4c570e4c5f75a30f911db6fe5d907dfb58a02d2afbd160d81b51bfc8dc5b3aef
+checksum=3a2d5b0131293673e18f0fb78800b4b4a23eefee481e90eba03de17ceaff5f15
 nostrip=yes
 
 if [ -z "$CROSS_BUILD" ]; then
@@ -20,3 +20,19 @@ if [ -z "$CROSS_BUILD" ]; then
 else
 	configure_args="-DBINARY_ICONS_RESOURCE=OFF"
 fi
+
+libbreeze-icons_package() {
+	pkg_install() {
+		vmove "usr/lib/*.so.*"
+	}
+}
+
+libbreeze-icons-devel_package() {
+	depends="libbreeze-icons>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/cmake
+		vmove "usr/lib/*.so"
+	}
+}

@@ -1,6 +1,6 @@
 # Template file for 'libnl3'
 pkgname=libnl3
-version=3.8.0
+version=3.11.0
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static"
@@ -11,7 +11,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-only"
 homepage="https://github.com/thom311/libnl"
 distfiles="https://github.com/thom311/libnl/releases/download/libnl${version//./_}/libnl-${version}.tar.gz"
-checksum=bb726c6d7a08b121978d73ff98425bf313fa26a27a331d465e4f1d7ec5b838c6
+checksum=2a56e1edefa3e68a7c00879496736fdbf62fc94ed3232c0baba127ecfa76874d
 
 pre_build() {
 	vsed -i -e '/<linux\/if_bridge.h>/i#define _LINUX_IN6_H' lib/route/link/bridge.c

@@ -1,6 +1,6 @@
 # Template file for 'harfbuzz'
 pkgname=harfbuzz
-version=8.2.2
+version=12.3.2
 revision=1
 build_style=meson
 build_helper="gir qemu"
@@ -18,10 +18,10 @@ makedepends="cairo-devel graphite-devel icu-devel libxml2"
 short_desc="OpenType text shaping engine"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="MIT"
-homepage="http://www.freedesktop.org/wiki/Software/HarfBuzz/"
+homepage="https://harfbuzz.github.io/"
 changelog="https://github.com/harfbuzz/harfbuzz/raw/main/NEWS"
 distfiles="https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz"
-checksum=e433ad85fbdf57f680be29479b3f964577379aaf319f557eb76569f0ecbc90f3
+checksum=6f6db164359a2da5a84ef826615b448b33e6306067ad829d85d5b0bf936f1bb8
 
 if [ "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=enabled"

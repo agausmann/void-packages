@@ -1,17 +1,17 @@
 # Template file for 'cargo-update'
 pkgname=cargo-update
-version=13.2.0
+version=18.0.0
 revision=1
 build_style=cargo
 hostmakedepends="pkg-config go-md2man"
-makedepends="libcurl-devel libgit2-devel libssh2-devel openssl-devel"
+makedepends="libcurl-devel libgit2-1.9-devel libssh2-devel openssl-devel"
 short_desc="Cargo subcommand for updates to installed executables"
-maintainer="Jan Christian Grünhage <jan.christian@gruenhage.xyz>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://github.com/nabijaczleweli/cargo-update"
 changelog="https://github.com/nabijaczleweli/cargo-update/releases"
 distfiles="https://github.com/nabijaczleweli/cargo-update/archive/refs/tags/v${version}.tar.gz"
-checksum=0c2495b7f9cf1409b13f54615a07a71c09d5099f71c2c00ce7c26ccc88112691
+checksum=cfa56d6c5fb2d7d1536efb4765031731fe70bf1a8246757a7a9d6a4a046e640f
 
 post_patch() {
 	# Upstream does not ship a lockfile and is very vocal about that being

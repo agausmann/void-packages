@@ -1,6 +1,6 @@
 # Template file for 'xfburn'
 pkgname=xfburn
-version=0.7.0
+version=0.8.0
 revision=1
 build_style=gnu-configure
 configure_args="--with-locales-dir=/usr/share/locale --enable-gstreamer"
@@ -11,5 +11,6 @@ short_desc="CD-burner application for the Xfce Desktop Environment"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://docs.xfce.org/apps/xfburn/start"
+changelog="https://gitlab.xfce.org/apps/xfburn/-/raw/master/NEWS"
 distfiles="https://archive.xfce.org/src/apps/xfburn/${version%.*}/xfburn-${version}.tar.bz2"
-checksum=ba960ea79a044b93e513f7c32bca1a599472d687ed0e0184bde8c84aeebb1f45
+checksum=13a301aebcef27de18f63f8ca10b43bc42f9c1b9865dff1bfb3e97cfd95dd989

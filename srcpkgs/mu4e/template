@@ -1,6 +1,6 @@
 # Template file for 'mu4e'
 pkgname=mu4e
-version=1.10.7
+version=1.12.13
 revision=1
 build_style=meson
 hostmakedepends="emacs libtool pkg-config texinfo glib-devel"
@@ -11,6 +11,6 @@ license="GPL-3.0-or-later"
 homepage="https://www.djcbsoftware.nl/code/mu/"
 changelog="https://github.com/djcb/mu/raw/master/NEWS.org"
 distfiles="https://github.com/djcb/mu/releases/download/v${version}/mu-${version}.tar.xz"
-checksum=eaaac9ba515da232295b03f2797eed13552fdd29a30122134dd382a64d0d3c21
+checksum=7908078c5cc90afc7c038d4372b33b404f7fddfe466a27994413dc06f993a445
 replaces="mu<${version}"
 provides="mu-${version}_${revision}"

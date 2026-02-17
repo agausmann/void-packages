@@ -1,6 +1,6 @@
 # Template file for 'lighttpd'
 pkgname=lighttpd
-version=1.4.73
+version=1.4.79
 revision=1
 build_style=meson
 configure_args="-Dwith_brotli=disabled -Dwith_bzip=disabled
@@ -20,7 +20,7 @@ maintainer="Enno Boland <gottox@voidlinux.org>"
 license="BSD-3-Clause"
 homepage="https://lighttpd.net"
 distfiles="https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-${version}.tar.xz"
-checksum=818816d0b314b0aa8728a7076513435f6d5eb227f3b61323468e1f10dbe84ca8
+checksum=3b29a625b3ad88702d1fea4f5f42bb7d87488f2e4efc977d7f185329ca6084bd
 
 conf_files="/etc/lighttpd/lighttpd.conf"
 system_accounts="_lighttpd"
@@ -29,6 +29,8 @@ lib32disabled=yes
 
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
 	makedepends+=" musl-legacy-compat"
+elif [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
+	makedepends+=" libxcrypt-devel"
 fi
 
 make_dirs="

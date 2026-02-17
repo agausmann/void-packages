@@ -1,6 +1,6 @@
 # Template file for 'python3-execnet'
 pkgname=python3-execnet
-version=2.0.2
+version=2.1.2
 revision=2
 build_style=python3-pep517
 hostmakedepends="hatchling hatch-vcs"
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://execnet.readthedocs.io/en/stable/"
 changelog="https://raw.githubusercontent.com/pytest-dev/execnet/master/CHANGELOG.rst"
 distfiles="${PYPI_SITE}/e/execnet/execnet-${version}.tar.gz"
-checksum=cc59bc4423742fd71ad227122eb0dd44db51efb3dc4095b45ac9a08c770096af
+checksum=63d83bfdd9a23e35b9c6a3261412324f964c2ec8dcd8d3c6916ee9373e0befcd
 
 post_install() {
 	vlicense LICENSE

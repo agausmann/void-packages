@@ -1,14 +1,14 @@
 # Template file for 'doomretro'
 pkgname=doomretro
-version=5.0.7
+version=5.7.2
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="SDL2_image-devel SDL2_mixer-devel"
 short_desc="Refined DOOM source port"
-maintainer="Benjamín Albiñana <benalb@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://www.doomretro.com"
 changelog="https://raw.githubusercontent.com/bradharding/doomretro/master/releasenotes.md"
 distfiles="https://github.com/bradharding/doomretro/archive/v${version}.tar.gz"
-checksum=ef2b8d88d69522b69a1173903729bcdbb1d984a6e3f363b71e1a92e830774b81
+checksum=cba070130496aa83dec75f860358fdaa5928606435149c47e3ecc6a36527dcbe

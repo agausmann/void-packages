@@ -1,17 +1,17 @@
 # Template file for 'python3-pytest-benchmark'
 pkgname=python3-pytest-benchmark
-version=4.0.0
-revision=2
+version=5.2.3
+revision=1
 build_style=python3-pep517
 hostmakedepends="python3-setuptools python3-wheel"
 depends="python3-pytest python3-py-cpuinfo"
 short_desc="Pytest fixture for benchmarking code"
-maintainer="Jan Christian Grünhage <jan.christian@gruenhage.xyz>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://github.com/ionelmc/pytest-benchmark"
 changelog="https://github.com/ionelmc/pytest-benchmark/raw/master/CHANGELOG.rst"
-distfiles="${PYPI_SITE}/p/pytest-benchmark/pytest-benchmark-${version}.tar.gz"
-checksum=fb0785b83efe599a6a956361c0691ae1dbb5318018561af10f3e915caa0048d1
+distfiles="${PYPI_SITE}/p/pytest-benchmark/pytest_benchmark-${version}.tar.gz"
+checksum=deb7317998a23c650fd4ff76e1230066a76cb45dcece0aca5607143c619e7779
 # requires itself to be properly installed
 make_check=no
 

@@ -1,25 +1,27 @@
 # Template file for 'cppcheck'
 pkgname=cppcheck
-version=2.12.1
+version=2.19.1
 revision=1
 build_style=cmake
 configure_args="
  -DBUILD_GUI=ON
+ -DDISABLE_DMAKE=ON
  -DFILESDIR=/usr/share/cppcheck
  -DHAVE_RULES=ON
  -DUSE_BUNDLED_TINYXML2=OFF
- -DUSE_MATCHCOMPILER=ON"
-hostmakedepends="libxslt docbook-xsl python3 qt5-tools-devel"
-makedepends="pcre-devel tinyxml2-devel qt5-devel qt5-tools-devel qt5-plugin-mysql
- qt5-plugin-odbc qt5-plugin-pgsql qt5-plugin-sqlite qt5-plugin-tds"
+ -DUSE_MATCHCOMPILER=ON
+ -DUSE_QT6=ON"
+hostmakedepends="libxslt docbook-xsl python3 qt6-tools-devel"
+makedepends="pcre-devel tinyxml2-devel qt6-base-devel qt6-tools-devel qt6-plugin-mysql
+ qt6-plugin-odbc qt6-plugin-pgsql qt6-plugin-sqlite"
 depends="python3"
 short_desc="Static analysis of C/C++ code"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="http://cppcheck.sourceforge.net"
 changelog="https://sourceforge.net/p/cppcheck/news/"
-distfiles="https://github.com/danmar/cppcheck/archive/${version}.tar.gz"
-checksum=2a3d4ba1179419612183ab3d6aed6d3b18be75e98cd6f138ea8e2020905dced2
+distfiles="https://github.com/danmar/cppcheck/archive/refs/tags/${version}.tar.gz"
+checksum=49bdf1d7826d60053575b78d3192d81d54970dbfb356590f7476de250b1a4234
 
 export CXXFLAGS="-DNDEBUG"
 
@@ -27,11 +29,10 @@ if [ -n "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -DBUILD_TESTS=ON"
 fi
 
-post_extract() {
-	if [ "$CROSS_BUILD" ]; then
-		vsed -e '/run-dmake/d' -i test/CMakeLists.txt -i cli/CMakeLists.txt
-	fi
-}
+if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+	makedepends+=" libexecinfo-devel"
+	configure_args+=" -DCMAKE_CXX_STANDARD_LIBRARIES=-lexecinfo"
+fi
 
 post_install() {
 	make DB2MAN=/usr/share/xsl/docbook/manpages/docbook.xsl man
@@ -43,7 +44,7 @@ post_install() {
 
 cppcheck-gui_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
-	short_desc+=" - Qt5 GUI"
+	short_desc+=" - Qt6 GUI"
 	pkg_install() {
 		vmove usr/bin/cppcheck-gui
 		vmove usr/share/cppcheck/cfg/lang

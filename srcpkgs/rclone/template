@@ -1,21 +1,22 @@
 # Template file for 'rclone'
 pkgname=rclone
-version=1.64.2
+version=1.72.1
 revision=1
 build_style=go
-build_helper=qemu
+build_helper="qemu"
 go_import_path=github.com/rclone/rclone
 go_build_tags="noselfupdate"
 go_ldflags="-extldflags=-fuse-ld=bfd -X github.com/rclone/rclone/fs.Version=v${version}"
+depends="mime-types"
+checkdepends="${depends} rsync unzip"
 short_desc="Rsync for cloud storage"
-maintainer="Roberto Ricci <io@r-ricci.it>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://rclone.org/"
-changelog="https://rclone.org/changelog/"
+changelog="https://raw.githubusercontent.com/rclone/rclone/master/docs/content/changelog.md"
 distfiles="https://downloads.rclone.org/v${version}/rclone-v${version}.tar.gz"
-checksum=0c74d8fb887691e04e865e3b6bc32e8af47c3e54a9922ffdbed38c8323e281c9
-# some tests fail on CI
-make_check=ci-skip
+checksum=227b84024e7e72056f716ee520c4db8b88ec5f80dc83f0899b431b2ce2b25f9b
+make_check_pre="env RCLONE_CONFIG=/notfound CI=1"
 
 pre_build() {
 	if [ "$CROSS_BUILD" ] && [ "$XBPS_TARGET_LIBC" = musl ]; then
@@ -26,17 +27,10 @@ pre_build() {
 	fi
 }
 
-do_check() {
-	rm cmd/serve/docker/docker_test.go
-	rm cmd/mount/mount_test.go
-	rm cmd/mount2/mount_test.go
-
-	# could time out on i686 and it's deprecated
-	# https://github.com/rclone/rclone/issues/5784#issuecomment-961520934
-	rm backend/cache/cache_test.go
-
-	# equivalent to quicktest target of Makefile
-	RCLONE_CONFIG="/notfound" go test -tags "$go_build_tags" ./...
+pre_check() {
+	rm -f cmd/mount/mount_test.go
+	rm -f cmd/mount2/mount_test.go
+	rm -f cmd/gitannex/e2e_test.go
 }
 
 post_install() {

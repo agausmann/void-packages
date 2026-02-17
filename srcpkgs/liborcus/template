@@ -1,22 +1,21 @@
 # Template file for 'liborcus'
 pkgname=liborcus
-version=0.18.1
-revision=2
+version=0.21.0
+revision=1
 build_style=gnu-configure
-hostmakedepends="automake libtool pkg-config python3"
-makedepends="boost-devel mdds libixion-devel python3-devel zlib-devel"
+hostmakedepends="pkg-config python3"
+makedepends="boost-devel-minimal
+ mdds libixion-devel python3-devel zlib-devel"
 short_desc="Library for processing spreadsheet documents"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="MPL-2.0"
 homepage="https://gitlab.com/orcus/orcus"
-distfiles="http://kohei.us/files/orcus/src/liborcus-${version}.tar.xz"
-# distfiles="${DEBIAN_SITE}/main/libo/liborcus/liborcus_${version}.orig.tar.xz"
-checksum=6006b9f1576315e313df715a7e72a17f3e0b17d7b6bd119cfa8a0b608ce971eb
+changelog="https://gitlab.com/orcus/orcus/-/raw/master/CHANGELOG"
+distfiles="https://gitlab.com/api/v4/projects/orcus%2Forcus/packages/generic/source/${version}/liborcus-${version}.tar.xz"
+checksum=1c6e473d6b8a63d61d0e6874a1762d6f0e0e78338d763e48ac93126ecde19b37
 replaces="liborcus11>=0"
 
-pre_configure() {
-	autoreconf -if
-}
+export BOOST_ROOT="${XBPS_CROSS_BASE}/usr"
 
 liborcus-devel_package() {
 	short_desc+=" - development files"

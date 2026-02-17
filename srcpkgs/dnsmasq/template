@@ -1,6 +1,6 @@
 # Template file for 'dnsmasq'
 pkgname=dnsmasq
-version=2.89
+version=2.92
 revision=1
 conf_files="/etc/dnsmasq.conf"
 hostmakedepends="pkg-config"
@@ -11,11 +11,12 @@ license="GPL-2.0-or-later"
 homepage="https://www.thekelleys.org.uk/dnsmasq/doc.html"
 changelog="https://www.thekelleys.org.uk/dnsmasq/CHANGELOG"
 distfiles="https://www.thekelleys.org.uk/dnsmasq/dnsmasq-${version}.tar.gz"
-checksum=8651373d000cae23776256e83dcaa6723dee72c06a39362700344e0c12c4e7e4
+checksum=fd908e79ff37f73234afcb6d3363f78353e768703d92abd8e3220ade6819b1e1
 system_accounts="dnsmasq"
 dnsmasq_homedir="/var/chroot"
 
 build_options="dnssec"
+build_options_default="dnssec"
 desc_option_dnssec="Enable DNSSEC support via nettle"
 
 do_build() {

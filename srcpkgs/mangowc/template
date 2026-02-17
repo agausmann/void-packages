@@ -1,0 +1,19 @@
+# Template file for 'mangowc'
+pkgname=mangowc
+version=0.12.2
+revision=1
+conf_files="/etc/mango/config.conf"
+build_style=meson
+hostmakedepends="pkg-config wayland-devel"
+makedepends="wlroots0.19-devel pcre2-devel scenefx-devel"
+depends="$(vopt_if xwayland xorg-server-xwayland)"
+short_desc="Dwl-based wayland compositor using scenefx"
+maintainer="Emil Miler <em@0x45.cz>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/DreamMaoMao/mangowc"
+changelog="https://github.com/DreamMaoMao/mangowc/releases"
+distfiles="https://github.com/DreamMaoMao/mangowc/archive/refs/tags/${version}.tar.gz"
+checksum=b2e6d0cad2eb4a18e0098c45f5f961a81ddd8b37027bd61c25b5e24473c62d66
+
+build_options="xwayland"
+desc_option_xwayland="Enable Xwayland support"

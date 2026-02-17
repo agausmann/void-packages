@@ -1,16 +1,16 @@
 # Template file for 'lxqt-build-tools'
 pkgname=lxqt-build-tools
-version=0.13.0
+version=2.3.0
 revision=1
 build_style=cmake
-hostmakedepends="qt5-host-tools qt5-qmake pkg-config"
-makedepends="qt5-devel"
+hostmakedepends="pkg-config qt6-base"
+makedepends="qt6-base"
 short_desc="LXQt build tools"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="BSD-3-Clause"
 homepage="https://lxqt-project.org"
 distfiles="https://github.com/lxqt/lxqt-build-tools/archive/${version}.tar.gz"
-checksum=7f45b7ed7f54ec1e119b005d5fccddd9fe8d9a231fb66c41c952f29a08d1f901
+checksum=ec4e890d3bfa4c249179d5eb70e5e2f9adc73f6a86e5f79be0c7c1ca0661a593
 
 post_install() {
 	vlicense BSD-3-Clause LICENSE

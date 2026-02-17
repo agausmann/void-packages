@@ -1,35 +1,25 @@
 # Template file for 'python3-pyzmq'
 pkgname=python3-pyzmq
-version=25.1.1
+version=27.1.0
 revision=2
-build_style=python3-module
-make_build_args="--zmq=${XBPS_CROSS_BASE}/usr"
-hostmakedepends="python3-setuptools python3-packaging"
+build_style=python3-pep517
+make_check_args="--ignore tests/test_log.py"
+make_check_target="tests"
+hostmakedepends="python3-scikit-build-core python3-Cython ninja"
 makedepends="zeromq-devel python3-devel"
 depends="python3"
-checkdepends="python3-pytest python3-pytest-asyncio"
+checkdepends="python3-pytest python3-pytest-asyncio python3-tornado"
 short_desc="Python3 bindings for the ZeroMQ messaging library"
 maintainer="Andrew J. Hesford <ajh@sideband.org>"
-license="LGPL-3.0-or-later, BSD-3-Clause"
+license="BSD-3-Clause"
 homepage="https://pyzmq.readthedocs.io/"
+changelog="https://raw.githubusercontent.com/zeromq/pyzmq/main/docs/source/changelog.md"
 changelog="https://pyzmq.readthedocs.io/en/latest/changelog.html"
 distfiles="${PYPI_SITE}/p/pyzmq/pyzmq-${version}.tar.gz"
-checksum=259c22485b71abacdfa8bf79720cd7bcf4b9d128b30ea554f01ae71fdbfdaa23
+checksum=ac0765e3d44455adb6ddbf4417dcce460fc40a05978c08efdf2948072f6db540
 
-pre_build() {
-	cat > setup.cfg <<-EOF
-		[global]
-		skip_check_zmq = True
-	EOF
-}
-
-do_check() {
-	cd build/lib*
-	python3 -m pytest zmq/tests -k 'not test_cython' \
-		--ignore zmq/tests/test_auth.py \
-		--ignore zmq/tests/test_zmqstream.py
-}
+export CMAKE_ARGS="-DPython_INCLUDE_DIR:PATH=${XBPS_CROSS_BASE}/${py3_inc}"
 
 post_install() {
-	vlicense LICENSE.BSD
+	vlicense LICENSE.md
 }

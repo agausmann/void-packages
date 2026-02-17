@@ -1,18 +1,18 @@
 # Template file for 'liblxqt'
 pkgname=liblxqt
-version=1.4.0
+version=2.3.0
 revision=1
 build_style=cmake
-hostmakedepends="pkg-config lxqt-build-tools qt5-qmake qt5-host-tools
- polkit-qt5-devel"
-makedepends="kwindowsystem-devel libqtxdg-devel libXScrnSaver-devel
- polkit-qt5-devel"
+hostmakedepends="pkg-config lxqt-build-tools
+ polkit-qt6-devel qt6-tools"
+makedepends="kf6-kwindowsystem-devel libqtxdg-devel libXScrnSaver-devel
+ polkit-qt6-devel" 
 short_desc="Core utility library for all LXQt components"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="https://lxqt-project.org"
 distfiles="https://github.com/lxqt/liblxqt/archive/${version}.tar.gz"
-checksum=c142c6a0bc32deda041a1862625cf56819e26d21adeb67a1c8dccbc1ce8e4ec5
+checksum=c59987b2c4388bf41226847261c168a6cb34637f881ed66a425440fea0769091
 
 liblxqt-devel_package() {
 	short_desc+=" - development files"

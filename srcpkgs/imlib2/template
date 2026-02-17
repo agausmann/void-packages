@@ -1,6 +1,6 @@
 # Template file for 'imlib2'
 pkgname=imlib2
-version=1.12.1
+version=1.12.6
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static --sysconfdir=/etc/imlib2 --enable-visibility-hiding"
@@ -9,11 +9,11 @@ makedepends="freetype-devel libjpeg-turbo-devel libpng-devel libwebp-devel
  tiff-devel libid3tag-devel giflib-devel libXext-devel libSM-devel
  libheif-devel librsvg-devel libopenjpeg2-devel libspectre-devel libjxl-devel"
 short_desc="Image manipulation library"
-maintainer="tibequadorian <tibequadorian@posteo.de>"
+maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Imlib2"
 homepage="https://sourceforge.net/projects/enlightenment/"
 distfiles="${SOURCEFORGE_SITE}/enlightenment/imlib2-src/imlib2-${version}.tar.xz"
-checksum=8c24d2d189c4d5ae602dbf2fc0fbb117aa923eab6c883041f0feeca4e8c6774e
+checksum=250f9752f69dc522e529a81aaa9395705f7fc312ff2453e5de59ac2ba1f2858f
 
 post_install() {
 	vlicense COPYING
@@ -38,7 +38,7 @@ imlib2-devel_package() {
 }
 
 imlib2-webp_package() {
-	build_style=meta
+	metapackage=yes
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc="WebP loader for Imlib2 (transitional dummy package)"
 }

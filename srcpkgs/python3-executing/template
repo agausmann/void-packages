@@ -1,7 +1,7 @@
 # Template file for 'python3-executing'
 pkgname=python3-executing
-version=2.0.1
-revision=1
+version=2.2.1
+revision=2
 build_style=python3-pep517
 make_check_target="tests/test_main.py"
 hostmakedepends="python3-setuptools_scm python3-wheel"
@@ -12,7 +12,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="MIT"
 homepage="https://github.com/alexmojaki/executing"
 distfiles="${PYPI_SITE}/e/executing/executing-${version}.tar.gz"
-checksum=35afe2ce3affba8ee97f2d69927fa823b08b472b7b994e36a52a964b93d16147
+checksum=3632cc370565f6648cc328b32435bd120a1e4ebb20c77e3fdde9a13cd1e533c4
 
 post_install() {
 	vlicense LICENSE.txt

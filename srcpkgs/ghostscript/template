@@ -1,19 +1,21 @@
 # Template file for 'ghostscript'
 pkgname=ghostscript
-version=10.02.1
+version=10.06.0
 revision=1
 hostmakedepends="automake libtool pkg-config"
 makedepends="$(vopt_if cups cups-devel) dbus-devel fontconfig-devel jasper-devel jbig2dec-devel
  lcms2-devel libXext-devel libXt-devel libopenjpeg2-devel libpaper-devel"
 depends="gsfonts"
 short_desc="Interpreter for the PostScript language"
-maintainer="Mohammed Anas <triallax@tutanota.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="AGPL-3.0-or-later, CPL-1.0"
 homepage="https://www.ghostscript.com/"
 changelog="https://ghostscript.readthedocs.io/en/latest/News.html"
 changelog="https://ghostscript.readthedocs.io/en/gs10.02.0/News.html"
 distfiles="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${version//./}/ghostscript-${version}.tar.xz"
-checksum=8c58c948b0721becefcd0029c8db95f9bb3268affc25ea01d4c5a6b07fa1ab08
+checksum=64352648c2c081c8a9fb1a12dc1965e01ead7c57f58b72d1b54f6ef1cef3c561
+
+CFLAGS=-fPIC
 
 build_options="cups"
 build_options_default="cups"
@@ -21,6 +23,10 @@ build_options_default="cups"
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" ${makedepends}"
 fi
+
+case "$XBPS_TARGET_MACHINE" in
+	arm*) configure_args+=" --disable-neon";;
+esac
 
 pre_configure() {
 	# force it to use system libs.

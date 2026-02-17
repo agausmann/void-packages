@@ -1,15 +1,15 @@
 # Template file for 'system-monitoring-center'
 pkgname=system-monitoring-center
-version=2.25.0
+version=3.0.0
 revision=1
 build_style=meson
-hostmakedepends="kdelibs4support-devel gettext"
+hostmakedepends="gettext gtk4-update-icon-cache desktop-file-utils"
 depends="dmidecode gir-freedesktop hwids iproute2 python3 python3-cairo util-linux
  libadwaita"
 short_desc="Multi-featured system monitor"
-maintainer="zenobit <zen@osowoso.xyz>"
+maintainer="zenobit <zenobit@disroot.org>"
 license="GPL-3.0-only"
 homepage="https://github.com/hakandundar34coding/system-monitoring-center"
 changelog="https://raw.githubusercontent.com/hakandundar34coding/system-monitoring-center/master/Changes.md"
 distfiles="https://github.com/hakandundar34coding/system-monitoring-center/archive/refs/tags/v${version}.tar.gz"
-checksum=1af73b361cce6f7d5701d0fc6a11645555ebc4a5dc539f5a7054505b4834c410
+checksum=03bbe26b50b62bbc55715ce10af7e426a80db0b1f3f36bb258f2be4f395a6ba0

@@ -1,7 +1,7 @@
 # Template file for 'hplip'
 # When possible, keep this package in sync with hplip-plugin
 pkgname=hplip
-version=3.23.8
+version=3.25.8
 revision=1
 build_style=gnu-configure
 pycompile_dirs="usr/share/hplip"
@@ -34,9 +34,10 @@ license="GPL-2.0-only, BSD-3-Clause, MIT"
 homepage="https://developers.hp.com/hp-linux-imaging-and-printing"
 changelog="https://developers.hp.com/hp-linux-imaging-and-printing/release_notes"
 distfiles="${SOURCEFORGE_SITE}/hplip/hplip/${version}/hplip-${version}.tar.gz"
-checksum=f7cc05f628c0cfd750e54ae41431c1dfdd29e97682f18b5c5ba5cb2c5b4b1b46
+checksum=1cf6d6c28735435c8eb6646e83bcfb721e51c4b1f0e8cf9105a6faf96dc9ad25
 
-CFLAGS="-I${XBPS_CROSS_BASE}/usr/include/libusb-1.0 -I${XBPS_CROSS_BASE}/${py3_inc}"
+CFLAGS="-I${XBPS_CROSS_BASE}/${py3_inc} \
+ -I${XBPS_CROSS_BASE}/usr/include/libusb-1.0 -fpermissive"
 
 pre_configure() {
 	export AUTOMAKE='automake --foreign'

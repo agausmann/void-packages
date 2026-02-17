@@ -1,9 +1,9 @@
 # Template file for 'python3-blessed'
 pkgname=python3-blessed
-version=1.20.0
-revision=2
-build_style=python3-module
-hostmakedepends="python3-setuptools"
+version=1.28
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-poetry-core python3-flit_core"
 depends="python3-six python3-wcwidth"
 checkdepends="$depends python3-pytest-cov"
 short_desc="Wrapper around terminal coloring, styling, and positioning"
@@ -11,7 +11,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="MIT"
 homepage="https://github.com/jquast/blessed"
 distfiles="${homepage}/archive/${version}.tar.gz"
-checksum=2bc8cfe68b210f3eaca9095bbc0752ca98de5a8845fbc68371fe5f5cf406a63d
+checksum=c6751af55edc53a4ff9266ec7ca33d58832b775e4fdd3751858ce3215175aa3c
 
 post_install() {
 	vlicense LICENSE

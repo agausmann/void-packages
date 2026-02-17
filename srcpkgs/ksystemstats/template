@@ -1,15 +1,21 @@
 # Template file for 'ksystemstats'
 pkgname=ksystemstats
-version=5.27.9
+version=6.5.5
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules qt5-qmake gettext
- kcoreaddons pkg-config qt5-host-tools"
-makedepends="qt5-devel networkmanager-qt5-devel ksolid-devel libnl3-devel
- kio-devel kdbusaddons-devel libksysguard-devel libsensors-devel"
+configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml
+ -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
+hostmakedepends="extra-cmake-modules qt6-base qt6-tools gettext pkg-config kf6-kconfig"
+makedepends="kf6-networkmanager-qt-devel kf6-solid-devel libnl3-devel
+ kf6-kio-devel kf6-kdbusaddons-devel libksysguard-devel libsensors-devel kf6-kcrash-devel"
 short_desc="Plugin based system monitoring daemon"
 maintainer="John <me@johnnynator.dev>"
-license="GPL-2.0-only OR GPL-3.0-only, LGPL-2.1-only OR LGPL-3-only"
+license="GPL-3.0-only,LGPL-3.0-only"
 homepage="https://invent.kde.org/plasma/ksystemstats"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=32dab5aa06edf7fb2702c16576bf4946a0d216abdb2265b0571883b325417951
+checksum=c51097403d084f22fcd8534ce6f439050b58a2ac60953ace2dc7012412adce9d
+
+do_check() {
+	cd build
+	ctest -E "ksystemstatstest"
+}

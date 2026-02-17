@@ -1,6 +1,6 @@
 # Template file for 'tig'
 pkgname=tig
-version=2.5.8
+version=2.6.0
 revision=1
 build_style=gnu-configure
 make_install_args="install-doc-man"
@@ -14,7 +14,7 @@ license="GPL-2.0-only"
 homepage="https://jonas.github.io/tig/"
 changelog="https://github.com/jonas/tig/blob/master/NEWS.adoc"
 distfiles="https://github.com/jonas/tig/archive/tig-${version}.tar.gz"
-checksum=d8cbfe4ede9d79b0da93d9002e79e8e466d5b4d2eee3dfa3dabf9cd5551a51c9
+checksum=e5c84bac827ba40e4ca9a311aeef4b93257b8cccd1b15e97ead44baea787786c
 
 pre_configure() {
 	NOCONFIGURE=1 ./autogen.sh

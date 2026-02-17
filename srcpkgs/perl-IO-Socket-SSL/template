@@ -1,6 +1,6 @@
 # Template file for 'perl-IO-Socket-SSL'
 pkgname=perl-IO-Socket-SSL
-version=2.084
+version=2.095
 revision=1
 build_style=perl-module
 hostmakedepends="perl"
@@ -12,4 +12,4 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://metacpan.org/release/IO-Socket-SSL"
 distfiles="${CPAN_SITE}/IO/${pkgname/perl-/}-${version}.tar.gz"
-checksum=a60d1e04e192363155329560498abd3412c3044295dae092d27fb6e445c71ce1
+checksum=7e764392b1b8bd44e654183c082b75be47800e98d7cd325f0e1b76c7d9a6b768
